@@ -93,7 +93,7 @@ main{padding-top:22px}
 <div class="selectors"><label class="cancer-control">Primary Gyn Cancer<select id="disease"><option value="ovarian">Ovarian / fallopian tube / peritoneal</option><option value="uterine">Endometrial / uterine</option><option value="cervical">Cervical</option><option value="vulvar">Vulvar</option><option value="vaginal">Vaginal</option></select></label><button id="viewStaging" class="stage-action">View staging algorithm</button><label id="cervicalStageControl" class="cervical-stage-control" hidden>FIGO stage<select id="cervicalStage"><option value="">Select stage</option><option value="ia1">IA1</option><option value="ia2">IA2</option><option value="ib1">IB1</option><option value="ib2">IB2</option><option value="ib3">IB3</option><option value="iia1">IIA1</option><option value="iia2">IIA2</option><option value="iib">IIB</option><option value="iiia">IIIA</option><option value="iiib">IIIB</option><option value="iiic1">IIIC1</option><option value="iiic2">IIIC2</option><option value="iva">IVA</option><option value="ivb">IVB</option><option value="recurrence-distant">Recurrence with distant metastases</option></select></label><label>Tumor grade<select id="grade"><option value="">Select grade</option><option>Grade 1</option><option>Grade 2</option><option>Grade 3</option><option>Low grade</option><option>High grade</option><option>Unknown / not applicable</option></select></label><label>Visit type<select id="visit"><option value="consult">New consultation</option><option value="treatment">Treatment review</option><option value="surveillance">Surveillance</option></select></label></div>
 <div class="workspace">
 <section class="reference panel"><div class="panel-heading"><div><p class="eyebrow">01 / REFERENCE</p><h2 id="referenceTitle">Staging &amp; Workup Overview</h2></div><a id="official" target="_blank" rel="noopener noreferrer" class="linkbutton">Open NCCN ↗</a></div>
-<div class="reference-body"><div class="reference-tabs" role="tablist" aria-label="Guideline section"><button id="stagingTab" class="tab active" role="tab" aria-selected="true">Staging &amp; Workup Overview</button><button id="treatmentTab" class="tab" role="tab" aria-selected="false">Treatment plan</button></div><p id="referenceHelp" hidden></p><div id="stagingQuickChoices" class="staging-quick-choices" role="group" aria-label="Cervical staging and workup pages" hidden></div><div id="treatmentCategoryChoices" class="staging-quick-choices treatment-category-choices" role="group" aria-label="Cervical treatment sections" hidden></div><div id="treatmentChoices" class="treatment-choices" hidden></div><button id="setupGuidelines" class="setup-guidelines" type="button" hidden>Set up guideline PDFs</button><input id="pdf" type="file" accept="application/pdf,.pdf" multiple hidden><p id="libraryStatus" role="status" hidden></p><label id="shortcutControl" class="shortcut-control"><span>Algorithm</span><select id="shortcut" aria-label="Algorithm shortcut" disabled><option>No saved guideline for this disease</option></select></label><div class="pdf-meta" hidden><span id="filename">No PDF loaded for this disease</span><button id="removePdf" hidden>Remove</button></div><div id="pdfEmpty" class="empty"><div class="diagram" aria-hidden="true"><span>Confirm diagnosis</span><i>↓</i><span>Review grade, stage & relevant findings</span><i>↓</i><span>Check current guideline branch</span><i>↓</i><span>Document clinician-selected plan</span></div><p>Precharting workflow · not an NCCN algorithm</p></div><div id="pdfViewer" hidden><div class="canvas-wrap"><canvas id="pdfCanvas" aria-label="Actual page from the selected guideline PDF"></canvas></div><div class="pdf-controls"><button id="prevPage" aria-label="Previous PDF page" title="Previous page">←</button><label>Page<input id="pageNumber" type="number" value="1" min="1"></label><span id="pageCount"></span><button id="nextPage" aria-label="Next PDF page" title="Next page">→</button><button id="zoomOut" aria-label="Zoom out" title="Zoom out">−</button><button id="zoomIn" aria-label="Zoom in" title="Zoom in">+</button><a id="pdfFallback" class="pdf-open-icon" target="_blank" rel="noopener" aria-label="Open PDF in a separate tab" title="Open PDF in a separate tab" hidden>↗</a></div></div><p id="pdfStatus" class="small" role="status"></p>
+<div class="reference-body"><div class="reference-tabs" role="tablist" aria-label="Guideline section"><button id="stagingTab" class="tab active" role="tab" aria-selected="true">Staging &amp; Workup Overview</button><button id="treatmentTab" class="tab" role="tab" aria-selected="false">Treatment plan</button></div><p id="referenceHelp" hidden></p><div id="stagingQuickChoices" class="staging-quick-choices" role="group" aria-label="Staging and workup pages" hidden></div><div id="treatmentCategoryChoices" class="staging-quick-choices treatment-category-choices" role="group" aria-label="Treatment sections" hidden></div><div id="treatmentChoices" class="treatment-choices" hidden></div><button id="setupGuidelines" class="setup-guidelines" type="button" hidden>Set up guideline PDFs</button><input id="pdf" type="file" accept="application/pdf,.pdf" multiple hidden><p id="libraryStatus" role="status" hidden></p><label id="shortcutControl" class="shortcut-control"><span>Algorithm</span><select id="shortcut" aria-label="Algorithm shortcut" disabled><option>No saved guideline for this disease</option></select></label><div class="pdf-meta" hidden><span id="filename">No PDF loaded for this disease</span><button id="removePdf" hidden>Remove</button></div><div id="pdfEmpty" class="empty"><div class="diagram" aria-hidden="true"><span>Confirm diagnosis</span><i>↓</i><span>Review grade, stage & relevant findings</span><i>↓</i><span>Check current guideline branch</span><i>↓</i><span>Document clinician-selected plan</span></div><p>Precharting workflow · not an NCCN algorithm</p></div><div id="pdfViewer" hidden><div class="canvas-wrap"><canvas id="pdfCanvas" aria-label="Actual page from the selected guideline PDF"></canvas></div><div class="pdf-controls"><button id="prevPage" aria-label="Previous PDF page" title="Previous page">←</button><label>Page<input id="pageNumber" type="number" value="1" min="1"></label><span id="pageCount"></span><button id="nextPage" aria-label="Next PDF page" title="Next page">→</button><button id="zoomOut" aria-label="Zoom out" title="Zoom out">−</button><button id="zoomIn" aria-label="Zoom in" title="Zoom in">+</button><a id="pdfFallback" class="pdf-open-icon" target="_blank" rel="noopener" aria-label="Open PDF in a separate tab" title="Open PDF in a separate tab" hidden>↗</a></div></div><p id="pdfStatus" class="small" role="status"></p>
 <div class="citation" hidden><label>Guideline version<input id="version"></label><label>Page / algorithm reference<input id="page"></label></div></div></section>
 <section class="builder panel"><div class="panel-heading"><div><p class="eyebrow">02 / PRECHART</p><h2>Assessment & plan</h2></div><span class="badge">Editable draft</span></div><div class="builder-body">
 <details open><summary>Clinical context</summary><div class="fields"><label>Histology<input id="histology" placeholder="Document confirmed histology"></label><label>Stage / staging system<input id="stage" placeholder="Stage, system/year, or not established"></label><label class="full">Disease / treatment summary<textarea id="history" rows="2" placeholder="Key dates, prior treatment, current disease status"></textarea></label><label class="full">Findings to review<textarea id="findings" rows="2" placeholder="Symptoms, pathology, imaging, labs; distinguish pending from reviewed"></textarea></label><label class="full">Biomarkers / genetics<textarea id="markers" rows="2" placeholder="Relevant results, pending tests, or not assessed"></textarea></label></div></details>
@@ -159,6 +159,10 @@ const guidelineIndex = {
       [
         23,
         "VAG-D \u00b7 Systemic therapy"
+      ],
+      [
+        28,
+        "ST-1 · FIGO vaginal cancer staging"
       ]
     ]
   },
@@ -312,7 +316,7 @@ const referenceSections = {
     treatment: [11, 13, 15, 16, 17, 18, 19, 21, 22, 23, 56, 57]
   },
   vaginal: {
-    staging: [7, 15],
+    staging: [28, 7, 15],
     treatment: [8, 9, 10, 11, 12, 23]
   }
 };
@@ -356,6 +360,18 @@ const cervicalTreatmentTree=[
  {keys:['iib','iiia','iiib','iiic1','iiic2','iva'],stage:'IIB · IIIA · IIIB · IIIC1–2 · IVA',paths:cervicalTreatmentPaths.iib},
  {keys:['ivb','recurrence-distant'],stage:'IVB or distant recurrence',paths:cervicalTreatmentPaths.ivb}
 ];
+const stageOptions={
+ cervical:[['ia1','IA1'],['ia2','IA2'],['ib1','IB1'],['ib2','IB2'],['ib3','IB3'],['iia1','IIA1'],['iia2','IIA2'],['iib','IIB'],['iiia','IIIA'],['iiib','IIIB'],['iiic1','IIIC1'],['iiic2','IIIC2'],['iva','IVA'],['ivb','IVB'],['recurrence-distant','Recurrence with distant metastases']],
+ vaginal:[['i','I'],['ii','II'],['iii','III'],['iva','IVA'],['ivb','IVB']]
+};
+let stageOptionsDisease='';
+function configureStageOptions(disease){
+ if(stageOptionsDisease===disease)return;
+ stageOptionsDisease=disease;
+ const select=$('cervicalStage');select.replaceChildren();
+ const prompt=document.createElement('option');prompt.value='';prompt.textContent='Select stage';select.append(prompt);
+ (stageOptions[disease]||[]).forEach(([value,label])=>{const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);});
+}
 const fields=['grade','histology','stage','history','findings','markers','plan','followup','version','page'];
 const clinicalFields=['grade','histology','stage','history','findings','markers','plan','followup'];
 let manuallyEdited=false, pdfURL=null, pdfDisease=null, referenceMode='staging', activeTreatmentCategory='primary';
@@ -461,10 +477,13 @@ $('regenerate').addEventListener('click',()=>{if(manuallyEdited&&!confirm('Repla
 $('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('note').value);$('status').textContent='Copied. Review and complete bracketed items in the chart.';}catch(e){$('note').focus();$('note').select();$('status').textContent='Clipboard unavailable. The draft is selected; press ⌘C or Ctrl+C.';}});
 function showDocument(){
  const disease=$('disease').value,entry=library.get(disease);
+ configureStageOptions(disease);
  const selectedPaths=disease==='cervical'&&referenceMode==='treatment'?cervicalTreatmentPaths[$('cervicalStage').value]:null;
- const categoryPage={adjuvant:17,surveillance:21,recurrence:22,systemic:57}[activeTreatmentCategory];
- const defaultPage=disease==='cervical'?(referenceMode==='staging'?63:(categoryPage||selectedPaths?.[0]?.page||1)):1;
- $('cervicalStageControl').hidden=disease!=='cervical';
+ const categoryPages={cervical:{adjuvant:17,surveillance:21,recurrence:22,systemic:57},vaginal:{adjuvant:9,surveillance:10,recurrence:11,systemic:23}};
+ const categoryPage=categoryPages[disease]?.[activeTreatmentCategory];
+ const vaginalPrimaryPage=$('cervicalStage').value==='ivb'?12:8;
+ const defaultPage=disease==='cervical'?(referenceMode==='staging'?63:(categoryPage||selectedPaths?.[0]?.page||1)):disease==='vaginal'?(referenceMode==='staging'?28:(categoryPage||vaginalPrimaryPage)):1;
+ $('cervicalStageControl').hidden=!['cervical','vaginal'].includes(disease);
  pdfURL=entry?.url||null; pdfDisease=entry?$('disease').value:null;
  $('pdfViewer').hidden=!entry;$('pdfEmpty').hidden=!!entry;$('removePdf').hidden=true;$('pdfFallback').hidden=!entry;
  openDocument(entry?.url,defaultPage); if(entry){$('pdfFallback').href=entry.url+(defaultPage>1?'#page='+defaultPage:'');}else{$('pdfFallback').removeAttribute('href');}
@@ -485,7 +504,7 @@ function showDocument(){
   }
  }
  $('libraryStatus').textContent=library.size?library.size+' guideline PDF(s) saved privately on this device. Switch disease to change documents.':'No guidelines are saved on this device yet.';
- $('setupGuidelines').hidden=library.size>=4;
+ $('setupGuidelines').hidden=library.size>=5;
  $('pdfStatus').textContent=entry&&!entry.verified?'This file is not an indexed edition. Check its title/version and navigate with the PDF viewer.':'';
  renderStagingQuickChoices();
  renderTreatmentCategoryChoices();
@@ -498,6 +517,7 @@ function guidelineKeyFromFilename(filename){
  if(/\b(ovarian|ovary|fallopian|peritoneal)\b/.test(name))return 'ovarian';
  if(/\b(uterine|uterus|endometrial|endometrium)\b/.test(name))return 'uterine';
  if(/\bvaginal\b/.test(name))return 'vaginal';
+ if(/\bvulvar\b|\bvulva\b/.test(name))return 'vulvar';
  return null;
 }
 $('pdf').addEventListener('change',async()=>{
@@ -507,8 +527,8 @@ $('pdf').addEventListener('change',async()=>{
   let key=null;
   try {const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await file.arrayBuffer()))).map(b=>b.toString(16).padStart(2,'0')).join('');key=Object.keys(guidelineIndex).find(k=>guidelineIndex[k].sha256===hash);}catch(e){}
   if(!key)key=guidelineKeyFromFilename(file.name);
-  const verified=!!key;
   if(!key&&files.length===1) key=$('disease').value;
+  const verified=!!guidelineIndex[key];
   if(!key){unrecognized++;continue;}
   if(library.has(key))URL.revokeObjectURL(library.get(key).url);
   const url=URL.createObjectURL(file);
@@ -520,7 +540,7 @@ $('pdf').addEventListener('change',async()=>{
  const messages=[];
  if(saved)messages.push(saved+' guideline PDF'+(saved===1?'':'s')+' saved in this browser.');
  if(storageFailures)messages.push(storageFailures+' opened but could not be saved for future sessions.');
- if(unrecognized)messages.push(unrecognized+' file'+(unrecognized===1?' was':'s were')+' not recognized; use filenames containing cervical, ovarian, uterine, or vaginal.');
+ if(unrecognized)messages.push(unrecognized+' file'+(unrecognized===1?' was':'s were')+' not recognized; use filenames containing cervical, ovarian, uterine, vaginal, or vulvar.');
  if(messages.length)$('pdfStatus').textContent=messages.join(' ');
  $('pdf').value='';
 });
@@ -534,29 +554,31 @@ function setGuidelinePage(page){
 }
 $('shortcut').addEventListener('change',()=>{if($('shortcut').value)setGuidelinePage(Number($('shortcut').value));});
 function renderStagingQuickChoices(){
- const box=$('stagingQuickChoices');
- const visible=$('disease').value==='cervical'&&referenceMode==='staging'&&!!library.get('cervical')?.verified;
+ const box=$('stagingQuickChoices'),disease=$('disease').value;
+ const pages={cervical:[[63,'FIGO Staging'],[10,'Workup Overview'],[34,'Imaging Principles']],vaginal:[[28,'FIGO Staging'],[7,'Workup Overview'],[15,'Imaging Principles']]}[disease];
+ const visible=!!pages&&referenceMode==='staging'&&!!library.get(disease)?.verified;
  box.hidden=!visible;box.replaceChildren();
  if(!visible)return;
- [[63,'FIGO Staging'],[10,'Workup Overview'],[34,'Imaging Principles']].forEach(([page,label])=>{
+ pages.forEach(([page,label])=>{
   const button=document.createElement('button');button.type='button';button.textContent=label;button.classList.toggle('active',currentPage===page);button.addEventListener('click',()=>setGuidelinePage(page));box.append(button);
  });
 }
+function treatmentPageSets(disease){
+ return disease==='cervical'?{primary:[11,13,15,16,18,23],adjuvant:[17,56],surveillance:[21],recurrence:[22],systemic:[57]}:{primary:[8,12],adjuvant:[9],surveillance:[10],recurrence:[11],systemic:[23]};
+}
 function renderTreatmentCategoryChoices(){
- const box=$('treatmentCategoryChoices');
- const verified=!!library.get('cervical')?.verified;
- const visible=$('disease').value==='cervical'&&referenceMode==='treatment'&&verified;
- box.hidden=!visible;$('shortcutControl').hidden=$('disease').value==='cervical'&&referenceMode==='staging'&&verified;box.replaceChildren();
+ const box=$('treatmentCategoryChoices'),disease=$('disease').value;
+ const supported=['cervical','vaginal'].includes(disease),verified=!!library.get(disease)?.verified;
+ const visible=supported&&referenceMode==='treatment'&&verified;
+ box.hidden=!visible;$('shortcutControl').hidden=supported&&referenceMode==='staging'&&verified;box.replaceChildren();
  if(!visible)return;
  const categories=[['primary','Primary Treatment'],['adjuvant','Surgical Findings & Adjuvant Treatment'],['surveillance','Surveillance'],['recurrence','Regional Recurrence'],['systemic','Systemic Therapy']];
- categories.forEach(([key,label])=>{const button=document.createElement('button');button.type='button';button.textContent=label;button.classList.toggle('active',activeTreatmentCategory===key);button.addEventListener('click',()=>{activeTreatmentCategory=key;const page={adjuvant:17,surveillance:21,recurrence:22,systemic:57}[key];if(page)setGuidelinePage(page);else{const paths=cervicalTreatmentPaths[$('cervicalStage').value];if(paths?.length)setGuidelinePage(paths[0].page);else{renderTreatmentCategoryChoices();renderTreatmentPathChoices();}}});box.append(button);});
- configureCervicalTreatmentShortcut();
+ categories.forEach(([key,label])=>{const button=document.createElement('button');button.type='button';button.textContent=label;button.classList.toggle('active',activeTreatmentCategory===key);button.addEventListener('click',()=>{activeTreatmentCategory=key;const pages=treatmentPageSets(disease)[key];let page=pages[0];if(key==='primary'){if(disease==='cervical')page=cervicalTreatmentPaths[$('cervicalStage').value]?.[0]?.page||pages[0];else page=$('cervicalStage').value==='ivb'?12:8;}setGuidelinePage(page);});box.append(button);});
+ configureTreatmentShortcut(disease);
 }
-function configureCervicalTreatmentShortcut(){
- const pageSets={primary:[11,13,15,16,18,23],adjuvant:[17,56],surveillance:[21],recurrence:[22],systemic:[57]};
- const pages=pageSets[activeTreatmentCategory]||pageSets.primary;
- const meta=guidelineIndex.cervical;
- const select=$('shortcut');
+function configureTreatmentShortcut(disease){
+ const pages=treatmentPageSets(disease)[activeTreatmentCategory]||treatmentPageSets(disease).primary;
+ const meta=guidelineIndex[disease],select=$('shortcut');
  select.replaceChildren();
  const prompt=document.createElement('option');prompt.value='';prompt.textContent=activeTreatmentCategory==='adjuvant'?'Choose surgical or adjuvant page':'Choose a treatment page';select.append(prompt);
  pages.forEach(page=>{const match=meta.pages.find(item=>item[0]===page);if(!match)return;const option=document.createElement('option');option.value=page;option.textContent=match[1]+' · PDF p. '+page;select.append(option);});
@@ -565,31 +587,30 @@ function configureCervicalTreatmentShortcut(){
  $('shortcutControl').querySelector('span').textContent='Pages';
 }
 function renderTreatmentPathChoices(){
- const box=$('treatmentChoices'),stage=$('cervicalStage').value;
- const visible=$('disease').value==='cervical'&&referenceMode==='treatment'&&activeTreatmentCategory==='primary';
+ const box=$('treatmentChoices'),stage=$('cervicalStage').value,disease=$('disease').value;
+ const visible=['cervical','vaginal'].includes(disease)&&referenceMode==='treatment'&&activeTreatmentCategory==='primary';
  box.hidden=!visible;box.replaceChildren();
  if(!visible)return;
  const heading=document.createElement('p');
- if(!stage){
-  heading.textContent='Select a cervical FIGO stage above to show its treatment branches.';
-  box.append(heading);
-  return;
- }
- const branch=cervicalTreatmentTree.find(item=>item.keys.includes(stage));
+ if(!stage){heading.textContent='Select a '+(disease==='cervical'?'cervical':'vaginal')+' FIGO stage above to show its treatment path.';box.append(heading);return;}
+ let branch;
+ if(disease==='vaginal'){
+  const label=$('cervicalStage').selectedOptions[0]?.textContent||stage.toUpperCase(),page=stage==='ivb'?12:8;
+  branch={stage:label,paths:[{page,label:stage==='ivb'?'Stage IVB / distant disease':'Primary treatment'}]};
+ }else branch=cervicalTreatmentTree.find(item=>item.keys.includes(stage));
  if(!branch)return;
- heading.textContent='Stage '+($('cervicalStage').selectedOptions[0]?.textContent||branch.stage)+' treatment paths';
+ heading.textContent='Stage '+($('cervicalStage').selectedOptions[0]?.textContent||branch.stage)+' treatment path'+(branch.paths.length>1?'s':'');
  const tree=document.createElement('div');tree.className='treatment-tree';
  const row=document.createElement('div');row.className='treatment-tree-row selected-stage';
  const stageNode=document.createElement('div');stageNode.className='treatment-stage-node';stageNode.textContent='Stage '+branch.stage;
  const arrow=document.createElement('span');arrow.className='tree-arrow';arrow.setAttribute('aria-hidden','true');
  const options=document.createElement('div');options.className='treatment-choice-buttons';
  branch.paths.forEach(path=>{const button=document.createElement('button');button.type='button';button.textContent=path.label+' · p. '+path.page;button.classList.toggle('active',currentPage===path.page);button.addEventListener('click',()=>setGuidelinePage(path.page));options.append(button);});
- row.append(stageNode,arrow,options);tree.append(row);
- box.append(heading,tree);
+ row.append(stageNode,arrow,options);tree.append(row);box.append(heading,tree);
 }
 $('cervicalStage').addEventListener('change',()=>{
  const selected=$('cervicalStage').selectedOptions[0]?.textContent||'';
- $('stage').value=selected?'FIGO 2018 Stage '+selected:'';
+ $('stage').value=selected?( $('disease').value==='cervical'?'FIGO 2018 Stage ':'FIGO Stage ')+selected:'';
  activeTreatmentCategory='primary';
  setReferenceMode('treatment',{scroll:true});render();
 });
