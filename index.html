@@ -1,5 +1,91 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Personal gynecologic oncology precharting workspace with local guideline viewing and editable note templates."><title>Gyn Onc · NCCN Guidelines</title><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="style.css"></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Personal gynecologic oncology precharting workspace with local guideline viewing and editable note templates."><title>Gyn Onc · NCCN Guidelines</title><link rel="icon" href="favicon.svg"><style>
+:root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#172c3e;background:#f2f5f8;font-size:16px;line-height:1.5;--muted:#596b7a;--line:#d6e0e7;--blue:#17627a}*{box-sizing:border-box}body{margin:0}header{padding:20px 4%;background:#102e43;color:white;display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:baseline;gap:7px;font-size:20px}.brand strong{font-weight:700}.brand-detail{color:#b9cedc;font-weight:400}.privacy{font-size:14px;color:#c9dce7}main{max-width:1640px;margin:auto;padding:30px 4%}.topline{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}h1{font-size:32px;letter-spacing:-1px;margin:3px 0}h2{font-size:20px;margin:0}h3{font-size:17px;margin:0}.eyebrow{font-size:12px;letter-spacing:1.6px;font-weight:700;color:var(--muted);margin:0 0 5px}.selectors{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:22px;align-items:end;margin-bottom:26px}.scope{font-size:14px;color:var(--muted);padding-bottom:9px}.workspace{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}.panel{background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden}.panel-heading{padding:22px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.reference-body,.builder-body{padding:22px 24px}.small{font-size:14px;color:var(--muted);line-height:1.6;margin:0 0 16px}.muted{color:var(--muted)}label{display:block;font-size:14px;font-weight:600}input,select,textarea{display:block;width:100%;font:inherit;color:inherit;border:1px solid #b8c8d4;border-radius:6px;padding:10px 12px;background:white;margin-top:7px;font-size:16px}textarea{resize:vertical}input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid #7cbfd6;outline-offset:2px}button,.linkbutton{font:inherit;font-size:14px;font-weight:600;border:1px solid #b8c8d4;border-radius:6px;padding:10px 14px;cursor:pointer;background:white;color:var(--blue);text-decoration:none;display:inline-block}button:hover,.linkbutton:hover{background:#edf5f9}.quiet{background:transparent}.primary{background:#17627a;color:white;border-color:#17627a;min-width:125px}.primary:hover{background:#104b60}.badge{font-size:12px;white-space:nowrap;padding:5px 9px;color:#24647d;background:#eaf4f8;border-radius:5px}.filelabel{border:1px dashed #a9c1d0;border-radius:8px;padding:15px;background:#f6f9fb}.filelabel input{border:0;padding:0;font-size:14px;background:none}.pdf-meta{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted);gap:10px;margin:12px 0;overflow-wrap:anywhere}.empty{min-height:420px;background:#f5f8fa;border:1px solid #e2e9ee;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}.empty p{font-size:12px;color:var(--muted);text-align:center;margin-top:24px}.diagram{display:flex;flex-direction:column;align-items:center;width:100%;max-width:310px}.diagram span{padding:14px 18px;border:1px solid #b6cbd8;background:white;border-radius:6px;text-align:center;width:100%;font-size:14px}.diagram i{font-style:normal;color:#6c8ba0;padding:7px}iframe{width:100%;height:690px;border:1px solid var(--line);border-radius:6px}.citation{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}summary{font-size:16px;font-weight:650;cursor:pointer;padding:0 0 15px}details{border-bottom:1px solid var(--line);margin-bottom:20px;padding-bottom:18px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}details>label{margin-top:14px}.draft-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:12px}.note{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;line-height:1.65;background:#f8fafc;min-height:340px}.copyrow{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:16px}.copyrow span{font-size:13px;color:var(--muted)}footer{font-size:12px;color:var(--muted);padding:24px 0}a{color:var(--blue)}footer a{margin-left:10px}[hidden]{display:none!important}@media(max-width:980px){.workspace{grid-template-columns:1fr}.selectors{grid-template-columns:1fr 1fr}.scope{grid-column:1/-1}.empty{min-height:300px}}@media(max-width:560px){header{align-items:flex-start;gap:10px;flex-direction:column}main{padding:24px 16px}.selectors,.fields,.citation{grid-template-columns:1fr}.panel-heading,.reference-body,.builder-body{padding:18px}.panel-heading{flex-wrap:wrap}.draft-heading{align-items:flex-start;flex-direction:column}.copyrow{align-items:flex-start}.brand{font-size:18px}h1{font-size:28px}input,select,textarea{min-width:0}.selectors>*,.workspace>*{min-width:0}}
+
+.pdf-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px;background:#eaf0f5;border:1px solid var(--line);border-radius:6px 6px 0 0}.pdf-controls label{display:flex;gap:6px;align-items:center}.pdf-controls input{width:70px;margin:0}.pdf-controls button{padding:8px 12px}.canvas-wrap{overflow:auto;max-height:720px;border:1px solid var(--line);background:#dce3e9;padding:8px}canvas{display:block;background:white;max-width:none}.reference{position:sticky;top:16px}@media(max-width:980px){.reference{position:static}.canvas-wrap{max-height:560px}}
+
+input,select,textarea{font-weight:400}button:disabled{cursor:default;opacity:.5}
+
+.selectors{grid-template-columns:1.25fr 1.2fr 1fr 1.05fr;gap:18px}
+.grade-control{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end}
+.grade-control button{white-space:nowrap}
+.cervical-stage-control{grid-column:1/-1}
+.field-hint{font-size:12px;font-weight:400;color:var(--muted)}
+.treatment-choices{margin:2px 0 18px;padding:0}
+.treatment-choices>p{margin:0 0 9px;font-size:13px;font-weight:700;color:#294b5e}
+.treatment-tree-row{display:grid;grid-template-columns:minmax(112px,.7fr) 44px minmax(0,2fr);align-items:center;gap:0;padding:2px 0}
+.treatment-stage-node{font-size:14px;font-weight:700;line-height:1.3;color:#244b60}
+.tree-arrow{position:relative;align-self:stretch;min-height:36px}
+.tree-arrow::before{content:"";position:absolute;left:0;right:8px;top:50%;border-top:1.5px solid #7795a6}
+.tree-arrow::after{content:"›";position:absolute;right:2px;top:calc(50% - 14px);font-size:25px;font-weight:300;line-height:1;color:#567d92}
+.treatment-choice-buttons{display:grid;gap:3px}
+.treatment-choice-buttons button{width:max-content;max-width:100%;text-align:left;line-height:1.3;padding:2px 0;background:transparent;border:0;border-radius:0;color:#17627a;font-size:13px;font-weight:600;text-decoration:underline;text-decoration-color:#9ab7c7;text-underline-offset:3px}
+.treatment-choice-buttons button::before{content:"→ ";color:#6b8999;text-decoration:none}
+.treatment-choice-buttons button:hover{background:transparent;color:#0b4d65}
+.treatment-choice-buttons button.active{color:#102e43;font-weight:800;text-decoration-color:#17627a}
+@media(max-width:620px){.treatment-tree-row{grid-template-columns:1fr}.tree-arrow{display:none}.treatment-choice-buttons{padding-left:12px}.treatment-choice-buttons button{width:100%}}
+.reference-tabs{display:grid;grid-template-columns:1fr 1fr;padding:4px;background:#eaf0f5;border-radius:8px;margin-bottom:14px}
+.reference-tabs .tab{border:0;color:var(--muted);background:transparent}
+.reference-tabs .tab.active{background:white;color:#123f55;box-shadow:0 1px 4px #173c5220}
+@media(max-width:1100px){.selectors{grid-template-columns:1fr 1fr}.scope{grid-column:1/-1}}
+@media(max-width:560px){.selectors,.grade-control{grid-template-columns:1fr}}
+
+.pdf-controls{min-height:40px;padding:5px 7px;gap:5px;justify-content:center;background:#f6f8fa;border-color:#d4dee5}
+.pdf-controls label{gap:5px;font-size:12px;font-weight:600;color:var(--muted)}
+.pdf-controls input{width:48px;height:30px;padding:3px 5px;font-size:14px;text-align:center;border-color:#c6d3dc}
+.pdf-controls button{display:inline-grid;place-items:center;width:32px;height:32px;padding:0;border-color:#c6d3dc;border-radius:5px;font-size:15px;line-height:1}
+.pdf-controls #pageCount{min-width:42px;font-size:12px;color:var(--muted)}
+.canvas-wrap{padding:6px}
+@media(max-width:560px){.pdf-controls{justify-content:flex-start}.pdf-controls button{width:30px;height:30px}}
+
+/* Compact visit controls */
+main{padding-top:22px}
+.topline{margin-bottom:14px}
+.topline h1{font-size:29px}
+.selectors{display:grid;grid-template-columns:minmax(230px,1.35fr) auto minmax(120px,.65fr) minmax(135px,.72fr) minmax(170px,.9fr);gap:12px;align-items:end;margin-bottom:20px;padding:15px 17px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px #173c5208}
+.selectors label{min-width:0;font-size:12px;letter-spacing:.02em;color:#52697a}
+.selectors select{height:42px;margin-top:4px;padding:7px 34px 7px 10px;border:0;border-bottom:1px solid #aebfca;border-radius:0;background-color:transparent;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20'%3E%3Cpath d='m5 7.5 5 5 5-5' fill='none' stroke='%2352697a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;appearance:none;font-size:15px}
+.selectors select:hover{border-bottom-color:#17627a;background-color:#f7fafb}
+.selectors select:focus{outline:2px solid #7cbfd6;outline-offset:1px;border-bottom-color:#17627a}
+.stage-action{height:42px;margin:0 2px 1px 0;padding:8px 12px;border:0;border-radius:6px;background:#edf5f8;color:#155b72;white-space:nowrap}
+.stage-action:hover{background:#deedf2}
+.cervical-stage-control{grid-column:auto}
+.field-hint{display:none}
+@media(max-width:1180px){.selectors{grid-template-columns:1.35fr auto 1fr 1fr}.selectors>label:last-child{grid-column:1/2}.cervical-stage-control{grid-column:auto}}
+@media(max-width:760px){main{padding-top:18px}.topline h1{font-size:27px}.selectors{grid-template-columns:1fr 1fr;padding:13px;gap:10px}.cancer-control{grid-column:1/-1}.stage-action{grid-column:1/-1;width:max-content}.cervical-stage-control{grid-column:auto}}
+@media(max-width:480px){.selectors{grid-template-columns:1fr}.cancer-control,.stage-action,.cervical-stage-control,.selectors>label:last-child{grid-column:1}.stage-action{width:100%}}
+
+/* Integrated PDF page */
+#pdfViewer{margin-top:5px}
+.pdf-controls{min-height:34px;padding:8px 0 2px;gap:3px;justify-content:center;background:transparent;border:0;border-radius:0}
+.pdf-controls label{gap:4px;font-size:12px;font-weight:600;color:#617482}
+.pdf-controls input{width:42px;height:27px;margin:0;padding:1px 3px;border:0;border-bottom:1px solid #b9c8d1;border-radius:0;background:transparent;font-size:13px}
+.pdf-controls button{width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:#17627a;font-size:15px}
+.pdf-controls button:hover{background:#edf5f8}
+.pdf-controls .pdf-open-icon{display:inline-grid;place-items:center;width:28px;height:28px;border:1px solid #bfd0da;border-radius:5px;background:white;color:#17627a;font-size:16px;line-height:1;text-decoration:none}
+.pdf-controls .pdf-open-icon:hover{background:#edf5f8}
+.pdf-controls #pageCount{min-width:38px;font-size:12px;color:#617482}
+.canvas-wrap{overflow:auto;max-height:none;padding:0;border:0;border-radius:0;background:white}
+#pdfCanvas{margin:0 auto;box-shadow:none}
+@media(max-width:560px){.pdf-controls{justify-content:center}.pdf-controls button{width:28px;height:28px}}
+.shortcut-control{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px;margin:10px 0 5px;color:#617482}
+.shortcut-control>span{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.shortcut-control select{height:36px;margin:0;padding:5px 30px 5px 9px;border:0;border-bottom:1px solid #bdcbd4;border-radius:0;background-color:transparent;font-size:13px}
+.shortcut-control select:hover{border-bottom-color:#17627a;background:#f7fafb}
+.setup-guidelines{display:block;margin:10px auto 4px;padding:7px 12px;border:1px solid #bfd0da;border-radius:7px;background:white;color:#17627a;font-size:12px;font-weight:700}
+.setup-guidelines:hover{background:#edf5f8}
+.setup-guidelines[hidden]{display:none}
+@media(max-width:560px){.shortcut-control{grid-template-columns:1fr;gap:3px}.shortcut-control select{width:100%}}
+.staging-quick-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0 7px;padding:3px;background:#eef3f6;border-radius:7px}
+.staging-quick-choices button{min-height:36px;padding:6px 9px;border:0;background:transparent;color:#52697a;font-size:12px}
+.staging-quick-choices button:hover{background:#f9fbfc}
+.staging-quick-choices button.active{background:white;color:#123f55;box-shadow:0 1px 4px #173c5220}
+@media(max-width:560px){.staging-quick-choices{grid-template-columns:1fr}.staging-quick-choices button{text-align:left}}
+.treatment-category-choices{grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch}
+.treatment-category-choices button{line-height:1.2;white-space:normal}
+@media(max-width:820px){.treatment-category-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.treatment-category-choices button:last-child{grid-column:1/-1}}
+
+</style></head>
 <body>
 <header><div class="brand"><strong>Gyn Onc</strong><span class="brand-detail">/ NCCN Guidelines</span></div><span class="privacy">kyang52@uic.edu</span></header>
 <main>
@@ -14,4 +100,557 @@
 <details open><summary>Clinician-selected plan</summary><p id="visitHint" class="small"></p><button id="starter" class="quiet">Insert visit starter</button><label>Plan for this visit<textarea id="plan" rows="3" placeholder="Enter the proposed plan after reviewing the current guideline and clinical context"></textarea></label><label>Follow-up / pending items<textarea id="followup" rows="2" placeholder="Timing, records to obtain, results to follow, discussions planned"></textarea></label></details>
 <div class="draft-heading"><h3>Copy-ready draft</h3><button id="regenerate" class="quiet">Rebuild from fields</button></div><p class="small">Edit the draft directly. Bracketed items remain incomplete; no examination, counseling, or treatment clearance is assumed.</p><textarea id="note" class="note" rows="15" aria-label="Editable assessment and plan draft" spellcheck="true"></textarea><div class="copyrow"><span id="status" role="status" aria-live="polite">Review before pasting into the chart.</span><button id="copy" class="primary">Copy A&P</button></div>
 </div></section></div><footer>Personal drafting workspace · No patient database, tracking, or external AI calls. Use de-identified context. <a href="https://www.nccn.org/guidelines/category_1" target="_blank" rel="noopener noreferrer">NCCN guideline directory ↗</a></footer>
-</main><script src="guidelines.js"></script><script type="module" src="app.js"></script></body></html>
+</main><script type="module">
+import {getDocument, GlobalWorkerOptions} from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@6.3.289/build/pdf.min.mjs';
+GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@6.3.289/build/pdf.worker.min.mjs';
+const guidelineIndex = {
+  "ovarian": {
+    "version": "4.2026",
+    "date": "2026-04-10",
+    "sha256": "8ae65eeb0653244174e878ad05da985c85b300776127c148170ae04a08513525",
+    "pages": [
+      [7, "OV-1 · Clinical presentation / workup"],
+      [8, "OV-2 · Primary treatment"],
+      [9, "OV-3 · Diagnosis after previous surgery"],
+      [10, "OV-4 · Pathologic staging"],
+      [11, "OV-5 · Post-primary / maintenance therapy"],
+      [12, "OV-6 · Monitoring / recurrence workup"],
+      [13, "OV-7 · Platinum-resistant disease"],
+      [14, "OV-8 · Platinum-sensitive disease"],
+      [34, "OV-A · Principles of imaging"],
+      [43, "OV-C · Pathology / molecular analysis"],
+      [47, "OV-D · Systemic therapy"],
+      [67, "OV-F · WHO histologic classification"]
+    ]
+  },
+  "vaginal": {
+    "version": "2.2026",
+    "date": "2025-12-04",
+    "sha256": "51bb07d743547cca2b7556dd76131db2e6a1d357563b8f50665f4f0298b9008b",
+    "pages": [
+      [
+        7,
+        "VAG-1 \u00b7 Workup"
+      ],
+      [
+        8,
+        "VAG-2 \u00b7 Primary treatment"
+      ],
+      [
+        9,
+        "VAG-3 \u00b7 Postoperative treatment"
+      ],
+      [
+        10,
+        "VAG-4 \u00b7 Surveillance"
+      ],
+      [
+        11,
+        "VAG-5 \u00b7 Locoregional recurrence"
+      ],
+      [
+        12,
+        "VAG-6 \u00b7 Distant disease"
+      ],
+      [
+        15,
+        "VAG-B \u00b7 Imaging"
+      ],
+      [
+        23,
+        "VAG-D \u00b7 Systemic therapy"
+      ]
+    ]
+  },
+  "cervical": {
+    "version": "2.2026",
+    "date": "2025-11-10",
+    "sha256": "5c430a9969b110159c83092770cfbe64c6a7f576c406b90a91d8edc659f24cb9",
+    "pages": [
+      [
+        10,
+        "CERV-1 \u00b7 Workup"
+      ],
+      [
+        11,
+        "CERV-2 · Stage IA1, IA2, IB1, IB2 — Fertility-Sparing Primary Treatment"
+      ],
+      [
+        13,
+        "CERV-3 · Stage IA1 — Non-Fertility-Sparing Primary Treatment"
+      ],
+      [
+        15,
+        "CERV-4 · Stage IA2, IB1 (+ conservative surgery criteria) — Non-Fertility-Sparing Primary Treatment"
+      ],
+      [
+        16,
+        "CERV-5 · Stage IB1 (− conservative surgery criteria), IB2, IB3, IIA1, IIA2 — Primary Treatment"
+      ],
+      [
+        17,
+        "CERV-6 \u00b7 Adjuvant treatment"
+      ],
+      [
+        18,
+        "CERV-7 · Stage IIB, IIIA, IIIB, IIIC1–2, IVA — Primary Treatment"
+      ],
+      [
+        19,
+        "CERV-8 \u00b7 Incidental finding after hysterectomy"
+      ],
+      [
+        21,
+        "CERV-10 \u00b7 Surveillance"
+      ],
+      [
+        22,
+        "CERV-11 \u00b7 Locoregional recurrence"
+      ],
+      [
+        23,
+        "CERV-12 · Stage IVB or Recurrence with Distant Metastases"
+      ],
+      [
+        34,
+        "CERV-B \u00b7 Imaging"
+      ],
+      [
+        56,
+        "CERV-E · Sedlis Criteria"
+      ],
+      [
+        57,
+        "CERV-F \u00b7 Systemic therapy"
+      ],
+      [
+        63,
+        "ST-1 \u00b7 FIGO cervical cancer staging (2018)"
+      ]
+    ]
+  },
+  "uterine": {
+    "version": "3.2026",
+    "date": "2026-06-16",
+    "sha256": "a9b9722053e719c7f33bd561a79ae1aef64b3c7c70c424b7bc4eaec54ae9109b",
+    "pages": [
+      [
+        10,
+        "UN-1 \u00b7 Initial evaluation"
+      ],
+      [
+        11,
+        "ENDO-1 \u00b7 Disease limited to uterus"
+      ],
+      [
+        12,
+        "ENDO-2 \u00b7 Cervical involvement"
+      ],
+      [
+        13,
+        "ENDO-3 \u00b7 Extrauterine disease"
+      ],
+      [
+        14,
+        "ENDO-4 \u00b7 Adjuvant treatment"
+      ],
+      [
+        19,
+        "ENDO-8 \u00b7 Fertility-sparing criteria"
+      ],
+      [
+        20,
+        "ENDO-9 \u00b7 Surveillance"
+      ],
+      [
+        21,
+        "ENDO-10 \u00b7 Locoregional recurrence"
+      ],
+      [
+        22,
+        "ENDO-11 \u00b7 Serous carcinoma"
+      ],
+      [
+        23,
+        "ENDO-12 \u00b7 Clear cell carcinoma"
+      ],
+      [
+        24,
+        "ENDO-13 \u00b7 Undifferentiated / dedifferentiated"
+      ],
+      [
+        25,
+        "ENDO-14 \u00b7 Carcinosarcoma"
+      ],
+      [
+        30,
+        "ENDO-B \u00b7 Imaging"
+      ],
+      [
+        38,
+        "ENDO-D \u00b7 Systemic therapy"
+      ],
+      [
+        45,
+        "UTSARC-1 \u00b7 Sarcoma pathway"
+      ]
+    ]
+  }
+};
+
+const referenceSections = {
+  ovarian: {
+    staging: [7, 9, 10, 34, 43, 67],
+    treatment: [8, 11, 12, 13, 14, 47]
+  },
+  uterine: {
+    staging: [10, 11, 12, 13, 30],
+    treatment: [14, 19, 20, 21, 22, 23, 24, 25, 38, 45]
+  },
+  cervical: {
+    staging: [63, 10, 34],
+    treatment: [11, 13, 15, 16, 17, 18, 19, 21, 22, 23, 56, 57]
+  },
+  vaginal: {
+    staging: [7, 15],
+    treatment: [8, 9, 10, 11, 12, 23]
+  }
+};
+
+const $ = id => document.getElementById(id);
+const diseases = {
+  ovarian: {name:'Ovarian / fallopian tube / primary peritoneal malignancy',pdf:'ovarian',focus:'Confirm primary site and histology; record relevant tumor and germline testing status.'},
+  uterine: {name:'Endometrial / uterine malignancy',pdf:'uterine',focus:'Confirm histologic subtype and relevant molecular findings; select the appropriate disease-specific pathway.'},
+  cervical: {name:'Cervical malignancy',pdf:'cervical',focus:'Confirm histology, extent of disease, and staging system; document relevant prior therapy.'},
+  vulvar: {name:'Vulvar malignancy',pdf:'vulvar',focus:'Confirm histology, primary-site findings, and nodal evaluation status.'},
+  vaginal: {name:'Vaginal malignancy',pdf:'vaginal',focus:'Confirm primary site and histology; distinguish a vaginal primary from involvement by another malignancy.'}
+};
+const visits = {
+ consult:{name:'New consultation',hint:'Prepare the diagnostic summary, identify missing records, and enter the proposed workup or treatment discussion.',items:'[Confirm pathology, staging information, and missing records.]\n[Document proposed workup, treatment options, and multidisciplinary review as applicable.]\n[Document counseling only after it occurs.]'},
+ treatment:{name:'Treatment review',hint:'Summarize the regimen and course, then record the proposed plan. Treatment clearance must be documented after clinical review.',items:'[Document regimen, intent, cycle, and prior treatment course.]\n[Review interval symptoms, toxicities, performance status, and required results.]\n[Document treatment decision after clinical review; not automatically cleared by this draft.]'},
+ surveillance:{name:'Surveillance',hint:'Document the prior treatment course and available findings. Enter a patient-specific surveillance plan after guideline review.',items:'[Review interval symptoms and available results; examination findings pending visit.]\n[Document disease status after assessment; no disease-free status assumed.]\n[Specify individualized surveillance and indications for additional evaluation.]'}
+};
+const cervicalTreatmentPaths={
+ ia1:[{page:11,label:'Fertility-sparing'},{page:13,label:'Non-fertility-sparing'}],
+ ia2:[{page:11,label:'Fertility-sparing'},{page:15,label:'Non-fertility-sparing · meets conservative surgery criteria'}],
+ ib1:[{page:11,label:'Fertility-sparing'},{page:15,label:'Non-fertility-sparing · meets conservative surgery criteria'},{page:16,label:'Primary treatment · does not meet conservative surgery criteria'}],
+ ib2:[{page:11,label:'Fertility-sparing'},{page:16,label:'Non-fertility-sparing primary treatment'}],
+ ib3:[{page:16,label:'Primary treatment'}],
+ iia1:[{page:16,label:'Primary treatment'}],
+ iia2:[{page:16,label:'Primary treatment'}],
+ iib:[{page:18,label:'Primary treatment'}],
+ iiia:[{page:18,label:'Primary treatment'}],
+ iiib:[{page:18,label:'Primary treatment'}],
+ iiic1:[{page:18,label:'Primary treatment'}],
+ iiic2:[{page:18,label:'Primary treatment'}],
+ iva:[{page:18,label:'Primary treatment'}],
+ ivb:[{page:23,label:'Stage IVB / distant metastatic disease'}],
+ 'recurrence-distant':[{page:23,label:'Recurrence with distant metastases'}]
+};
+const cervicalTreatmentTree=[
+ {keys:['ia1'],stage:'IA1',paths:cervicalTreatmentPaths.ia1},
+ {keys:['ia2'],stage:'IA2',paths:cervicalTreatmentPaths.ia2},
+ {keys:['ib1'],stage:'IB1',paths:cervicalTreatmentPaths.ib1},
+ {keys:['ib2'],stage:'IB2',paths:cervicalTreatmentPaths.ib2},
+ {keys:['ib3','iia1','iia2'],stage:'IB3 · IIA1 · IIA2',paths:cervicalTreatmentPaths.ib3},
+ {keys:['iib','iiia','iiib','iiic1','iiic2','iva'],stage:'IIB · IIIA · IIIB · IIIC1–2 · IVA',paths:cervicalTreatmentPaths.iib},
+ {keys:['ivb','recurrence-distant'],stage:'IVB or distant recurrence',paths:cervicalTreatmentPaths.ivb}
+];
+const fields=['grade','histology','stage','history','findings','markers','plan','followup','version','page'];
+const clinicalFields=['grade','histology','stage','history','findings','markers','plan','followup'];
+let manuallyEdited=false, pdfURL=null, pdfDisease=null, referenceMode='staging', activeTreatmentCategory='primary';
+const library = new Map();
+const DB_NAME='gyn-onc-prechart-local';
+const DB_STORE='guidelines';
+let activeDocument=null, currentPage=1, zoom=1, documentGeneration=0, renderGeneration=0, renderTask=null;
+function openDatabase(){
+ return new Promise((resolve,reject)=>{
+  const request=indexedDB.open(DB_NAME,1);
+  request.onupgradeneeded=()=>request.result.createObjectStore(DB_STORE,{keyPath:'key'});
+  request.onsuccess=()=>resolve(request.result);
+  request.onerror=()=>reject(request.error);
+ });
+}
+async function saveGuideline(key,file,verified){
+ const db=await openDatabase();
+ await new Promise((resolve,reject)=>{
+  const transaction=db.transaction(DB_STORE,'readwrite');
+  transaction.objectStore(DB_STORE).put({key,name:file.name,type:file.type||'application/pdf',blob:file,verified,savedAt:Date.now()});
+  transaction.oncomplete=resolve;transaction.onerror=()=>reject(transaction.error);
+ });
+ db.close();
+}
+async function forgetGuideline(key){
+ const db=await openDatabase();
+ await new Promise((resolve,reject)=>{
+  const transaction=db.transaction(DB_STORE,'readwrite');
+  transaction.objectStore(DB_STORE).delete(key);
+  transaction.oncomplete=resolve;transaction.onerror=()=>reject(transaction.error);
+ });
+ db.close();
+}
+async function restoreGuidelines(){
+ try{
+  const db=await openDatabase();
+  const saved=await new Promise((resolve,reject)=>{
+   const request=db.transaction(DB_STORE,'readonly').objectStore(DB_STORE).getAll();
+   request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);
+  });
+  db.close();
+  saved.forEach(entry=>library.set(entry.key,{url:URL.createObjectURL(entry.blob),name:entry.name,verified:entry.verified}));
+  showDocument();render();
+ }catch(e){
+  $('libraryStatus').textContent='Saved guideline storage is unavailable in this browser. You can still choose PDFs for this session.';
+ }
+}
+async function drawPage(){
+ if(!activeDocument)return;
+ const generation=++renderGeneration;
+ if(renderTask){renderTask.cancel();try{await renderTask.promise;}catch(e){}}
+ const page=await activeDocument.getPage(currentPage);if(generation!==renderGeneration)return;
+ const canvas=$('pdfCanvas'), base=page.getViewport({scale:1}), ratio=window.devicePixelRatio||1;
+ const fit=Math.max(200,canvas.parentElement.clientWidth-18)/base.width;
+ const viewport=page.getViewport({scale:fit*zoom*ratio});canvas.width=viewport.width;canvas.height=viewport.height;canvas.style.width=(viewport.width/ratio)+'px';canvas.style.height=(viewport.height/ratio)+'px';
+ $('pageNumber').value=currentPage;$('pageCount').textContent='/ '+activeDocument.numPages;
+ $('prevPage').disabled=currentPage<=1;$('nextPage').disabled=currentPage>=activeDocument.numPages;
+ $('zoomOut').disabled=zoom<=1;$('zoomIn').disabled=zoom>=3.5;
+ renderStagingQuickChoices();
+ renderTask=page.render({canvasContext:canvas.getContext('2d'),viewport});
+ try{await renderTask.promise;}catch(e){if(e.name!=='RenderingCancelledException')$('pdfStatus').textContent='Page could not be rendered; use the separate-tab link.';}
+}
+async function openDocument(url,initialPage=1){
+ const generation=++documentGeneration;++renderGeneration;currentPage=initialPage;zoom=1;
+ if(renderTask)renderTask.cancel();
+  if(activeDocument){
+    if(typeof activeDocument.destroy==='function'){
+      try{await activeDocument.destroy();}catch(error){console.warn('Unable to release previous PDF document',error);}
+    }
+    activeDocument=null;
+  }
+ $('pdfCanvas').getContext('2d').clearRect(0,0,$('pdfCanvas').width,$('pdfCanvas').height);
+ if(!url)return;
+ try{const doc=await getDocument({url,cMapUrl:'./vendor/cmaps/',cMapPacked:true,standardFontDataUrl:'./vendor/standard_fonts/',wasmUrl:'./vendor/wasm/'}).promise;
+  if(generation!==documentGeneration){
+    if(typeof doc.destroy==='function'){
+      try{await doc.destroy();}catch(error){console.warn('Unable to release stale PDF document',error);}
+    }
+    return;
+  }
+  activeDocument=doc;
+  await drawPage();
+}
+ catch(e){if(generation===documentGeneration)$('pdfStatus').textContent='Unable to render this PDF. Use the separate-tab link or choose another file.';}
+}
+function value(id, fallback){return $(id).value.trim() || '['+fallback+']';}
+function render(){
+ const d=diseases[$('disease').value],v=visits[$('visit').value];
+ $('official').href=d.pdf?'https://www.nccn.org/professionals/physician_gls/pdf/'+d.pdf+'.pdf':'https://www.nccn.org/guidelines/category_1';
+ $('visitHint').textContent=v.hint+' '+d.focus;
+ if(manuallyEdited){$('status').textContent='Fields changed. Rebuild to replace your manually edited draft.';return;}
+ $('note').value='PRECHART DRAFT — '+v.name+'\n\nASSESSMENT\n'+d.name+'\nHistology: '+value('histology','confirm histology')+'\nGrade: '+value('grade','document grade or unknown / not applicable')+'\nStage / system: '+value('stage','confirm stage and system')+'\nCourse / disease status: '+value('history','summarize confirmed history')+'\nFindings: '+value('findings','review symptoms, records, and results')+'\nBiomarkers / genetics: '+value('markers','document relevant results or testing status')+'\n\nPLAN\n'+value('plan','enter clinician-selected plan')+'\n\nVisit review items\n'+v.items+'\n\nFollow-up / pending items\n'+value('followup','specify follow-up and pending items')+'\n\nGuideline reference: '+value('version','verify current guideline version')+'; '+value('page','document page / algorithm branch')+'.\nDraft prepared before visit; confirm and update before signing.';
+ $('status').textContent='Review before pasting into the chart.';
+}
+fields.forEach(id=>$(id).addEventListener('input',render));
+$('visit').addEventListener('change',render);
+let previousDisease=$('disease').value;
+$('disease').addEventListener('change',()=>{
+ if((manuallyEdited||clinicalFields.some(id=>$(id).value.trim()))&&!confirm('Switch disease and clear the current visit draft? Saved guideline PDFs will remain available.')){$('disease').value=previousDisease;return;}
+ previousDisease=$('disease').value;fields.forEach(id=>$(id).value='');$('cervicalStage').value='';activeTreatmentCategory='primary';manuallyEdited=false;showDocument();render();
+});
+$('note').addEventListener('input',()=>{manuallyEdited=true;$('status').textContent='Draft edited directly. Field changes require rebuilding.';});
+$('regenerate').addEventListener('click',()=>{if(manuallyEdited&&!confirm('Replace direct edits with a new draft from the fields?'))return;manuallyEdited=false;render();});
+$('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('note').value);$('status').textContent='Copied. Review and complete bracketed items in the chart.';}catch(e){$('note').focus();$('note').select();$('status').textContent='Clipboard unavailable. The draft is selected; press ⌘C or Ctrl+C.';}});
+function showDocument(){
+ const disease=$('disease').value,entry=library.get(disease);
+ const selectedPaths=disease==='cervical'&&referenceMode==='treatment'?cervicalTreatmentPaths[$('cervicalStage').value]:null;
+ const categoryPage={adjuvant:17,surveillance:21,recurrence:22,systemic:57}[activeTreatmentCategory];
+ const defaultPage=disease==='cervical'?(referenceMode==='staging'?63:(categoryPage||selectedPaths?.[0]?.page||1)):1;
+ $('cervicalStageControl').hidden=disease!=='cervical';
+ pdfURL=entry?.url||null; pdfDisease=entry?$('disease').value:null;
+ $('pdfViewer').hidden=!entry;$('pdfEmpty').hidden=!!entry;$('removePdf').hidden=true;$('pdfFallback').hidden=!entry;
+ openDocument(entry?.url,defaultPage); if(entry){$('pdfFallback').href=entry.url+(defaultPage>1?'#page='+defaultPage:'');}else{$('pdfFallback').removeAttribute('href');}
+ $('filename').textContent=entry?entry.name:'No PDF loaded for this disease';
+ $('shortcutControl').querySelector('span').textContent='Algorithm';
+ $('shortcut').replaceChildren();
+ const prompt=document.createElement('option');prompt.value='';prompt.textContent=entry?.verified?'Choose an algorithm page':'No saved guideline for this disease';$('shortcut').append(prompt);
+ $('shortcut').disabled=!entry?.verified;
+ if(entry?.verified){
+  const meta=guidelineIndex[$('disease').value];
+  const allowed=new Set(referenceSections[$('disease').value]?.[referenceMode]||meta.pages.map(([page])=>page));
+  meta.pages.filter(([page])=>allowed.has(page)).forEach(([page,label])=>{const o=document.createElement('option');o.value=page;o.textContent=label+' · PDF p. '+page;$('shortcut').append(o);});
+  $('version').value='NCCN '+meta.version+' ('+meta.date+')';
+  if(defaultPage>1&&allowed.has(defaultPage)){
+   const match=meta.pages.find(([page])=>page===defaultPage);
+   $('shortcut').value=String(defaultPage);
+   $('page').value=match[1]+' (PDF p. '+defaultPage+')';
+  }
+ }
+ $('libraryStatus').textContent=library.size?library.size+' guideline PDF(s) saved privately on this device. Switch disease to change documents.':'No guidelines are saved on this device yet.';
+ $('setupGuidelines').hidden=library.size>=4;
+ $('pdfStatus').textContent=entry&&!entry.verified?'This file is not an indexed edition. Check its title/version and navigate with the PDF viewer.':'';
+ renderStagingQuickChoices();
+ renderTreatmentCategoryChoices();
+ renderTreatmentPathChoices();
+}
+$('setupGuidelines').addEventListener('click',()=>$('pdf').click());
+function guidelineKeyFromFilename(filename){
+ const name=filename.toLowerCase().replace(/[^a-z0-9]+/g,' ');
+ if(/\b(cervical|cervix)\b/.test(name))return 'cervical';
+ if(/\b(ovarian|ovary|fallopian|peritoneal)\b/.test(name))return 'ovarian';
+ if(/\b(uterine|uterus|endometrial|endometrium)\b/.test(name))return 'uterine';
+ if(/\bvaginal\b/.test(name))return 'vaginal';
+ return null;
+}
+$('pdf').addEventListener('change',async()=>{
+ const files=Array.from($('pdf').files);let unrecognized=0,saved=0,storageFailures=0;
+ for(const file of files){
+  if(!/\.pdf$/i.test(file.name)||(file.type&&file.type!=='application/pdf')){unrecognized++;continue;}
+  let key=null;
+  try {const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await file.arrayBuffer()))).map(b=>b.toString(16).padStart(2,'0')).join('');key=Object.keys(guidelineIndex).find(k=>guidelineIndex[k].sha256===hash);}catch(e){}
+  if(!key)key=guidelineKeyFromFilename(file.name);
+  const verified=!!key;
+  if(!key&&files.length===1) key=$('disease').value;
+  if(!key){unrecognized++;continue;}
+  if(library.has(key))URL.revokeObjectURL(library.get(key).url);
+  const url=URL.createObjectURL(file);
+  library.set(key,{url,name:file.name,verified});
+  try{await saveGuideline(key,file,verified);saved++;}catch(e){storageFailures++;}
+ }
+ if(!library.has($('disease').value)&&library.size&&!manuallyEdited&&!clinicalFields.some(id=>$(id).value.trim())){$('disease').value=library.keys().next().value;previousDisease=$('disease').value;$('version').value='';$('page').value='';}
+ showDocument();render();
+ const messages=[];
+ if(saved)messages.push(saved+' guideline PDF'+(saved===1?'':'s')+' saved in this browser.');
+ if(storageFailures)messages.push(storageFailures+' opened but could not be saved for future sessions.');
+ if(unrecognized)messages.push(unrecognized+' file'+(unrecognized===1?' was':'s were')+' not recognized; use filenames containing cervical, ovarian, uterine, or vaginal.');
+ if(messages.length)$('pdfStatus').textContent=messages.join(' ');
+ $('pdf').value='';
+});
+function setGuidelinePage(page){
+ if(!pdfURL)return;
+ const meta=guidelineIndex[$('disease').value],match=meta.pages.find(p=>p[0]===page);
+ currentPage=page;drawPage();$('pdfFallback').href=pdfURL+'#page='+page;
+ if(Array.from($('shortcut').options).some(option=>Number(option.value)===page))$('shortcut').value=String(page);
+ if(match)$('page').value=match[1]+' (PDF p. '+page+')';
+ renderStagingQuickChoices();renderTreatmentCategoryChoices();renderTreatmentPathChoices();render();
+}
+$('shortcut').addEventListener('change',()=>{if($('shortcut').value)setGuidelinePage(Number($('shortcut').value));});
+function renderStagingQuickChoices(){
+ const box=$('stagingQuickChoices');
+ const visible=$('disease').value==='cervical'&&referenceMode==='staging'&&!!library.get('cervical')?.verified;
+ box.hidden=!visible;box.replaceChildren();
+ if(!visible)return;
+ [[63,'FIGO Staging'],[10,'Workup Overview'],[34,'Imaging Principles']].forEach(([page,label])=>{
+  const button=document.createElement('button');button.type='button';button.textContent=label;button.classList.toggle('active',currentPage===page);button.addEventListener('click',()=>setGuidelinePage(page));box.append(button);
+ });
+}
+function renderTreatmentCategoryChoices(){
+ const box=$('treatmentCategoryChoices');
+ const verified=!!library.get('cervical')?.verified;
+ const visible=$('disease').value==='cervical'&&referenceMode==='treatment'&&verified;
+ box.hidden=!visible;$('shortcutControl').hidden=$('disease').value==='cervical'&&referenceMode==='staging'&&verified;box.replaceChildren();
+ if(!visible)return;
+ const categories=[['primary','Primary Treatment'],['adjuvant','Surgical Findings & Adjuvant Treatment'],['surveillance','Surveillance'],['recurrence','Regional Recurrence'],['systemic','Systemic Therapy']];
+ categories.forEach(([key,label])=>{const button=document.createElement('button');button.type='button';button.textContent=label;button.classList.toggle('active',activeTreatmentCategory===key);button.addEventListener('click',()=>{activeTreatmentCategory=key;const page={adjuvant:17,surveillance:21,recurrence:22,systemic:57}[key];if(page)setGuidelinePage(page);else{const paths=cervicalTreatmentPaths[$('cervicalStage').value];if(paths?.length)setGuidelinePage(paths[0].page);else{renderTreatmentCategoryChoices();renderTreatmentPathChoices();}}});box.append(button);});
+ configureCervicalTreatmentShortcut();
+}
+function configureCervicalTreatmentShortcut(){
+ const pageSets={primary:[11,13,15,16,18,23],adjuvant:[17,56],surveillance:[21],recurrence:[22],systemic:[57]};
+ const pages=pageSets[activeTreatmentCategory]||pageSets.primary;
+ const meta=guidelineIndex.cervical;
+ const select=$('shortcut');
+ select.replaceChildren();
+ const prompt=document.createElement('option');prompt.value='';prompt.textContent=activeTreatmentCategory==='adjuvant'?'Choose surgical or adjuvant page':'Choose a treatment page';select.append(prompt);
+ pages.forEach(page=>{const match=meta.pages.find(item=>item[0]===page);if(!match)return;const option=document.createElement('option');option.value=page;option.textContent=match[1]+' · PDF p. '+page;select.append(option);});
+ select.disabled=false;
+ if(pages.includes(currentPage))select.value=String(currentPage);
+ $('shortcutControl').querySelector('span').textContent='Pages';
+}
+function renderTreatmentPathChoices(){
+ const box=$('treatmentChoices'),stage=$('cervicalStage').value;
+ const visible=$('disease').value==='cervical'&&referenceMode==='treatment'&&activeTreatmentCategory==='primary';
+ box.hidden=!visible;box.replaceChildren();
+ if(!visible)return;
+ const heading=document.createElement('p');
+ if(!stage){
+  heading.textContent='Select a cervical FIGO stage above to show its treatment branches.';
+  box.append(heading);
+  return;
+ }
+ const branch=cervicalTreatmentTree.find(item=>item.keys.includes(stage));
+ if(!branch)return;
+ heading.textContent='Stage '+($('cervicalStage').selectedOptions[0]?.textContent||branch.stage)+' treatment paths';
+ const tree=document.createElement('div');tree.className='treatment-tree';
+ const row=document.createElement('div');row.className='treatment-tree-row selected-stage';
+ const stageNode=document.createElement('div');stageNode.className='treatment-stage-node';stageNode.textContent='Stage '+branch.stage;
+ const arrow=document.createElement('span');arrow.className='tree-arrow';arrow.setAttribute('aria-hidden','true');
+ const options=document.createElement('div');options.className='treatment-choice-buttons';
+ branch.paths.forEach(path=>{const button=document.createElement('button');button.type='button';button.textContent=path.label+' · p. '+path.page;button.classList.toggle('active',currentPage===path.page);button.addEventListener('click',()=>setGuidelinePage(path.page));options.append(button);});
+ row.append(stageNode,arrow,options);tree.append(row);
+ box.append(heading,tree);
+}
+$('cervicalStage').addEventListener('change',()=>{
+ const selected=$('cervicalStage').selectedOptions[0]?.textContent||'';
+ $('stage').value=selected?'FIGO 2018 Stage '+selected:'';
+ activeTreatmentCategory='primary';
+ setReferenceMode('treatment',{scroll:true});render();
+});
+function setReferenceMode(mode,{openFirst=false,scroll=false}={}){
+ referenceMode=mode;
+ const staging=mode==='staging';
+ $('stagingTab').classList.toggle('active',staging);$('stagingTab').setAttribute('aria-selected',String(staging));
+ $('treatmentTab').classList.toggle('active',!staging);$('treatmentTab').setAttribute('aria-selected',String(!staging));
+ $('referenceTitle').textContent=staging?'Staging & Workup Overview':'Treatment plan flow charts';
+ $('referenceHelp').textContent=staging?'Review workup, pathology, imaging, and staging pathways for the selected disease site.':'Review primary treatment, adjuvant therapy, surveillance, recurrence, and systemic-therapy pathways.';
+ showDocument();
+ if(openFirst&&!$('shortcut').disabled&&$('shortcut').options.length>1&&!$('shortcut').value){$('shortcut').selectedIndex=1;$('shortcut').dispatchEvent(new Event('change'));}
+ if(scroll)document.querySelector('.reference').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('stagingTab').addEventListener('click',()=>setReferenceMode('staging'));
+$('treatmentTab').addEventListener('click',()=>setReferenceMode('treatment'));
+$('viewStaging').addEventListener('click',()=>setReferenceMode('staging',{openFirst:true,scroll:true}));
+$('removePdf').addEventListener('click',async()=>{
+ const key=$('disease').value,entry=library.get(key);
+ if(entry)URL.revokeObjectURL(entry.url);
+ library.delete(key);
+ try{await forgetGuideline(key);}catch(e){$('pdfStatus').textContent='This browser could not remove the saved PDF.';}
+ $('version').value='';$('page').value='';showDocument();render();
+});
+const surveillanceStarters={
+ uterine:'Endometrial carcinoma surveillance draft — confirm histology and applicability; not a uterine sarcoma template.\nPlan physical examination including pelvic examination every 3–6 months for the first 2–3 years, every 6–12 months through year 5, then annually. Select the next interval based on the treatment timeline and clinical context.\nConsider CA-125 monitoring when initially elevated or with serous histology. Obtain imaging for symptoms or examination findings concerning for recurrence. Assess late treatment effects and survivorship needs.\n[Document current symptoms, examination after the visit, and any indicated evaluation.]',
+ cervical:'Cervical cancer surveillance draft — confirm applicability and prior treatment.\nPlan interval history and physical examination every 3–6 months for the first 2 years, every 6–12 months during years 3–5, then annually according to recurrence risk.\nSelect follow-up imaging using the stage-specific imaging guidance (CERV-B). Obtain laboratory assessment when indicated by concerning symptoms or findings. Consider annual cervical/vaginal cytology only when indicated to screen for lower genital tract neoplasia; it has limited value for recurrence detection and is not recommended after radiation unless another indication exists. Assess late treatment effects and survivorship needs.\n[Document symptoms, examination after the visit, and any evaluation for suspected recurrence.]',
+ vaginal:'Vaginal cancer surveillance draft — confirm applicability and prior treatment.\nPlan interval history and physical examination every 3–6 months for the first 2 years, every 6–12 months during years 3–5, then annually according to recurrence risk.\nReview post-treatment response imaging at 3–4 months after treatment completion. Further imaging and laboratory assessment should be guided by concerning symptoms or examination findings. Consider cervical/vaginal cytology when indicated for lower genital tract neoplasia, recognizing limited recurrence-detection value and reduced accuracy after pelvic radiation. Assess late treatment effects and survivorship needs.\n[Document symptoms, examination after the visit, and any evaluation for suspected recurrence.]'
+};
+$('starter').addEventListener('click',()=>{
+ if($('plan').value.trim()&&!confirm('Replace the current plan field with a visit starter?'))return;
+ const key=$('disease').value, visit=$('visit').value;
+ if(visit==='surveillance'&&surveillanceStarters[key]){
+  $('plan').value=surveillanceStarters[key];
+  const m=guidelineIndex[key], page={uterine:20,cervical:21,vaginal:10}[key];
+  $('version').value='NCCN '+m.version+' ('+m.date+'); supplied edition, confirm currency';
+  $('page').value=m.pages.find(p=>p[0]===page)[1]+' (PDF p. '+page+')';
+ }else if(visit==='consult'){
+  $('plan').value='Confirm pathology, histologic subtype, and available staging information. Obtain [missing records / pathology review / imaging] as clinically indicated.\nReview [appropriate guideline branch] after confirming [key eligibility criteria, relevant biomarkers, prior therapy, and patient goals].\nProposed management: [clinician-selected plan and rationale]. Consider multidisciplinary discussion and relevant clinical trials.\nCounseling planned: [options, risks, benefits, alternatives, and fertility goals where relevant]. Document discussion after the visit.';
+ }else if(visit==='treatment'){
+  $('plan').value='Proposed regimen / intent / cycle: [enter].\nReview interval symptoms, performance status, toxicities, required laboratory results, and response assessment.\nTreatment decision pending clinical review: [proceed / hold / modify, with rationale and verified regimen-specific parameters].\nSupportive care and toxicity management: [individualized plan].\nNext treatment / response assessment: [timing and tests].';
+ }else{
+  $('plan').value='Review interval symptoms, prior treatment, and surveillance timeline. Examination and disease-status assessment are pending the visit.\nConfirm the current disease-specific surveillance guidance and enter [examination interval, indications for testing/imaging, and next visit].\nAssess treatment sequelae and survivorship needs. Investigate symptoms or findings concerning for recurrence as clinically indicated.';
+ }
+ render();
+});
+$('reset').addEventListener('click',()=>{if(!confirm('Clear the visit fields and draft? Saved guideline PDFs will remain on this device.'))return;fields.forEach(id=>$(id).value='');manuallyEdited=false;showDocument();render();});
+window.addEventListener('pagehide',()=>{library.forEach(e=>URL.revokeObjectURL(e.url));});
+showDocument();render();restoreGuidelines();
+
+$('prevPage').addEventListener('click',()=>{if(activeDocument&&currentPage>1){currentPage--;drawPage();}});
+$('nextPage').addEventListener('click',()=>{if(activeDocument&&currentPage<activeDocument.numPages){currentPage++;drawPage();}});
+$('pageNumber').addEventListener('change',()=>{if(activeDocument){currentPage=Math.max(1,Math.min(activeDocument.numPages,Math.round(Number($('pageNumber').value)||1)));drawPage();}});
+$('zoomIn').addEventListener('click',()=>{zoom=Math.min(zoom+.3,3.5);drawPage();});
+$('zoomOut').addEventListener('click',()=>{zoom=Math.max(zoom-.3,1);drawPage();});
+let lastCanvasWidth=0;
+new ResizeObserver(entries=>{
+ const width=Math.round(entries[0]?.contentRect.width||0);
+ if(!width||Math.abs(width-lastCanvasWidth)<2)return;
+ lastCanvasWidth=width;
+ if(activeDocument)drawPage();
+}).observe(document.querySelector('.canvas-wrap'));
+</script></body></html>
