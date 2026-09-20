@@ -454,7 +454,6 @@ fields.forEach(id=>$(id).addEventListener('input',render));
 $('visit').addEventListener('change',render);
 let previousDisease=$('disease').value;
 $('disease').addEventListener('change',()=>{
- if((manuallyEdited||clinicalFields.some(id=>$(id).value.trim()))&&!confirm('Switch disease and clear the current visit draft? Saved guideline PDFs will remain available.')){$('disease').value=previousDisease;return;}
  previousDisease=$('disease').value;fields.forEach(id=>$(id).value='');$('cervicalStage').value='';activeTreatmentCategory='primary';manuallyEdited=false;showDocument();render();
 });
 $('note').addEventListener('input',()=>{manuallyEdited=true;$('status').textContent='Draft edited directly. Field changes require rebuilding.';});
