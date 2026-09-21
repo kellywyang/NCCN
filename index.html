@@ -86,6 +86,8 @@ main{padding-top:22px}
 .treatment-category-choices button{line-height:1.2;white-space:normal}
 @media(max-width:820px){.treatment-category-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.treatment-category-choices button:last-child{grid-column:1/-1}}
 
+.ap-workspace{display:flex;flex-direction:column;gap:12px}.ap-template-control{max-width:420px}.ap-note{min-height:620px;margin-top:2px}
+
 </style></head>
 <body>
 <header><div class="brand"><strong>NCCN Guidelines</strong><span class="brand-detail">(2026)</span></div><span class="privacy">kyang52@uic.edu</span></header>
@@ -96,10 +98,11 @@ main{padding-top:22px}
 <section class="reference panel"><div class="panel-heading"><div><p class="eyebrow">01 / REFERENCE</p><h2 id="referenceTitle">Staging &amp; Workup</h2></div><a id="official" target="_blank" rel="noopener noreferrer" class="linkbutton">Open NCCN ↗</a></div>
 <div class="reference-body"><div class="reference-tabs" role="tablist" aria-label="Guideline section"><button id="stagingTab" class="tab active" role="tab" aria-selected="true">Staging &amp; Workup</button><button id="treatmentTab" class="tab" role="tab" aria-selected="false">Treatment Planning</button></div><p id="referenceHelp" hidden></p><div id="stagingQuickChoices" class="staging-quick-choices" role="group" aria-label="Staging and workup pages" hidden></div><label id="stagingPageChoices" class="shortcut-control staging-page-choices" hidden><span>FIGO table</span><select id="stagingPageSelect" aria-label="FIGO staging table"></select></label><div id="treatmentCategoryChoices" class="staging-quick-choices treatment-category-choices" role="group" aria-label="Treatment sections" hidden></div><div id="treatmentChoices" class="treatment-choices" hidden></div><button id="setupGuidelines" class="setup-guidelines" type="button" hidden>Set up guideline PDFs</button><input id="pdf" type="file" accept="application/pdf,.pdf" multiple hidden><p id="libraryStatus" role="status" hidden></p><label id="shortcutControl" class="shortcut-control"><span>Algorithm</span><select id="shortcut" aria-label="Algorithm shortcut" disabled><option>No saved guideline for this disease</option></select></label><div class="pdf-meta" hidden><span id="filename">No PDF loaded for this disease</span><button id="removePdf" hidden>Remove</button></div><div id="pdfEmpty" class="empty"><div class="diagram" aria-hidden="true"><span>Confirm diagnosis</span><i>↓</i><span>Review grade, stage & relevant findings</span><i>↓</i><span>Check current guideline branch</span><i>↓</i><span>Document clinician-selected plan</span></div><p>Precharting workflow · not an NCCN algorithm</p></div><div id="pdfViewer" hidden><div class="canvas-wrap"><canvas id="pdfCanvas" aria-label="Actual page from the selected guideline PDF"></canvas></div><div class="pdf-controls"><button id="prevPage" aria-label="Previous PDF page" title="Previous page">←</button><label>Page<input id="pageNumber" type="number" value="1" min="1"></label><span id="pageCount"></span><button id="nextPage" aria-label="Next PDF page" title="Next page">→</button><button id="zoomOut" aria-label="Zoom out" title="Zoom out">−</button><button id="zoomIn" aria-label="Zoom in" title="Zoom in">+</button><a id="pdfFallback" class="pdf-open-icon" target="_blank" rel="noopener" aria-label="Open PDF in a separate tab" title="Open PDF in a separate tab" hidden>↗</a></div></div><p id="pdfStatus" class="small" role="status"></p>
 <div class="citation" hidden><label>Guideline version<input id="version"></label><label>Page / algorithm reference<input id="page"></label></div></div></section>
-<section class="builder panel"><div class="panel-heading"><div><p class="eyebrow">02 / PRECHART</p><h2>Assessment & plan</h2></div><span class="badge">Editable draft</span></div><div class="builder-body">
-<details open><summary>Clinical context</summary><div class="fields"><label>Histology<input id="histology" placeholder="Document confirmed histology"></label><label>Stage / staging system<input id="stage" placeholder="Stage, system/year, or not established"></label><label class="full">Disease / treatment summary<textarea id="history" rows="2" placeholder="Key dates, prior treatment, current disease status"></textarea></label><label class="full">Findings to review<textarea id="findings" rows="2" placeholder="Symptoms, pathology, imaging, labs; distinguish pending from reviewed"></textarea></label><label class="full">Biomarkers / genetics<textarea id="markers" rows="2" placeholder="Relevant results, pending tests, or not assessed"></textarea></label></div></details>
-<details open><summary>Clinician-selected plan</summary><p id="visitHint" class="small"></p><button id="starter" class="quiet">Insert visit starter</button><label>Plan for this visit<textarea id="plan" rows="3" placeholder="Enter the proposed plan after reviewing the current guideline and clinical context"></textarea></label><label>Follow-up / pending items<textarea id="followup" rows="2" placeholder="Timing, records to obtain, results to follow, discussions planned"></textarea></label></details>
-<div class="draft-heading"><h3>Copy-ready draft</h3><button id="regenerate" class="quiet">Rebuild from fields</button></div><p class="small">Edit the draft directly. Bracketed items remain incomplete; no examination, counseling, or treatment clearance is assumed.</p><textarea id="note" class="note" rows="15" aria-label="Editable assessment and plan draft" spellcheck="true"></textarea><div class="copyrow"><span id="status" role="status" aria-live="polite">Review before pasting into the chart.</span><button id="copy" class="primary">Copy A&P</button></div>
+<section class="builder panel"><div class="panel-heading"><div><p class="eyebrow">02 / PRECHART</p><h2>A&amp;P</h2></div></div><div class="builder-body ap-workspace">
+<label class="ap-template-control">A&amp;P template<select id="apTemplate"><option value="consult">New consultation</option><option value="treatment">Treatment</option><option value="surveillance">Surveillance</option></select></label>
+<p class="small">The selected visit type opens its matching template. Choose another template here when needed, then edit before copying.</p>
+<textarea id="note" class="note ap-note" rows="24" aria-label="Editable assessment and plan" spellcheck="true"></textarea><div class="copyrow"><span id="status" role="status" aria-live="polite">Review before pasting into the chart.</span><button id="copy" class="primary">Copy A&amp;P</button></div>
+<div hidden><p id="visitHint"></p><button id="starter"></button><button id="regenerate"></button><input id="histology"><input id="stage"><textarea id="history"></textarea><textarea id="findings"></textarea><textarea id="markers"></textarea><textarea id="plan"></textarea><textarea id="followup"></textarea></div>
 </div></section></div><footer>Personal drafting workspace · No patient database, tracking, or external AI calls. Use de-identified context. <a href="https://www.nccn.org/guidelines/category_1" target="_blank" rel="noopener noreferrer">NCCN guideline directory ↗</a></footer>
 </main><script>
 const guidelineIndex = {
@@ -510,16 +513,27 @@ async function openDocument(url,initialPage=1){
  catch(e){if(generation===documentGeneration)$('pdfStatus').textContent='Unable to render this PDF. Use the separate-tab link or choose another file.';}
 }
 function value(id, fallback){return $(id).value.trim() || '['+fallback+']';}
+function selectedApTemplate(){return $('apTemplate').value||$('visit').value;}
+function buildApTemplate(){
+ const key=$('disease').value,d=diseases[key],template=selectedApTemplate();
+ if(template==='surveillance'){
+  const surveillance=surveillanceStarters[key]||'Review interval symptoms, prior treatment, and surveillance timeline.\nConfirm the disease-specific surveillance interval and indications for examination, imaging, laboratory testing, and additional evaluation.\nAssess treatment effects and survivorship needs.\n[Add disease-specific surveillance plan.]';
+  return 'ASSESSMENT\n'+d.name+' — surveillance\n\nPLAN\n'+surveillance;
+ }
+ if(template==='treatment')return 'ASSESSMENT\n'+d.name+' — treatment visit\n\nPLAN\nProposed regimen / intent / cycle: [enter]\nReview interval symptoms, performance status, toxicities, required laboratory results, and response assessment.\nTreatment decision: [proceed / hold / modify, with rationale]\nSupportive care and toxicity management: [enter]\nNext treatment / response assessment: [timing and tests]';
+ return 'ASSESSMENT\n'+d.name+' — new consultation\n\nPLAN\nConfirm pathology, histologic subtype, and available staging information.\nObtain [missing records / pathology review / imaging] as clinically indicated.\nReview [appropriate guideline branch] after confirming [key eligibility criteria, biomarkers, prior therapy, and patient goals].\nProposed management: [clinician-selected plan and rationale].\nCounseling: [options, risks, benefits, alternatives, and fertility goals where relevant].';
+}
 function render(){
  const d=diseases[$('disease').value],v=visits[$('visit').value];
  $('official').href=d.pdf?'https://www.nccn.org/professionals/physician_gls/pdf/'+d.pdf+'.pdf':'https://www.nccn.org/guidelines/category_1';
  $('visitHint').textContent=v.hint+' '+d.focus;
- if(manuallyEdited){$('status').textContent='Fields changed. Rebuild to replace your manually edited draft.';return;}
- $('note').value='PRECHART DRAFT — '+v.name+'\n\nASSESSMENT\n'+d.name+'\nHistology: '+value('histology','confirm histology')+'\nGrade: '+value('grade','document grade or unknown / not applicable')+'\nStage / system: '+value('stage','confirm stage and system')+'\nCourse / disease status: '+value('history','summarize confirmed history')+'\nFindings: '+value('findings','review symptoms, records, and results')+'\nBiomarkers / genetics: '+value('markers','document relevant results or testing status')+'\n\nPLAN\n'+value('plan','enter clinician-selected plan')+'\n\nVisit review items\n'+v.items+'\n\nFollow-up / pending items\n'+value('followup','specify follow-up and pending items')+'\n\nGuideline reference: '+value('version','verify current guideline version')+'; '+value('page','document page / algorithm branch')+'.\nDraft prepared before visit; confirm and update before signing.';
+ if(manuallyEdited)return;
+ $('note').value=buildApTemplate();
  $('status').textContent='Review before pasting into the chart.';
 }
 fields.forEach(id=>$(id).addEventListener('input',render));
-$('visit').addEventListener('change',render);
+$('visit').addEventListener('change',()=>{$('apTemplate').value=$('visit').value;manuallyEdited=false;render();});
+$('apTemplate').addEventListener('change',()=>{manuallyEdited=false;render();});
 let previousDisease=$('disease').value;
 $('disease').addEventListener('change',()=>{
  previousDisease=$('disease').value;fields.forEach(id=>$(id).value='');$('cervicalStage').value='';activeTreatmentCategory='primary';manuallyEdited=false;showDocument();render();
