@@ -87,6 +87,8 @@ main{padding-top:22px}
 @media(max-width:820px){.treatment-category-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.treatment-category-choices button:last-child{grid-column:1/-1}}
 
 .ap-workspace{display:flex;flex-direction:column;gap:12px}.ap-template-control{max-width:420px}.ap-note{min-height:620px;margin-top:2px}
+.ap-template-tabs{grid-template-columns:repeat(3,1fr);margin-bottom:4px}
+@media(max-width:560px){.ap-template-tabs{grid-template-columns:1fr}.ap-template-tabs .tab{text-align:center}}
 
 </style></head>
 <body>
@@ -99,8 +101,7 @@ main{padding-top:22px}
 <div class="reference-body"><div class="reference-tabs" role="tablist" aria-label="Guideline section"><button id="stagingTab" class="tab active" role="tab" aria-selected="true">Staging &amp; Workup</button><button id="treatmentTab" class="tab" role="tab" aria-selected="false">Treatment Planning</button></div><p id="referenceHelp" hidden></p><div id="stagingQuickChoices" class="staging-quick-choices" role="group" aria-label="Staging and workup pages" hidden></div><label id="stagingPageChoices" class="shortcut-control staging-page-choices" hidden><span>FIGO table</span><select id="stagingPageSelect" aria-label="FIGO staging table"></select></label><div id="treatmentCategoryChoices" class="staging-quick-choices treatment-category-choices" role="group" aria-label="Treatment sections" hidden></div><div id="treatmentChoices" class="treatment-choices" hidden></div><button id="setupGuidelines" class="setup-guidelines" type="button" hidden>Set up guideline PDFs</button><input id="pdf" type="file" accept="application/pdf,.pdf" multiple hidden><p id="libraryStatus" role="status" hidden></p><label id="shortcutControl" class="shortcut-control"><span>Algorithm</span><select id="shortcut" aria-label="Algorithm shortcut" disabled><option>No saved guideline for this disease</option></select></label><div class="pdf-meta" hidden><span id="filename">No PDF loaded for this disease</span><button id="removePdf" hidden>Remove</button></div><div id="pdfEmpty" class="empty"><div class="diagram" aria-hidden="true"><span>Confirm diagnosis</span><i>↓</i><span>Review grade, stage & relevant findings</span><i>↓</i><span>Check current guideline branch</span><i>↓</i><span>Document clinician-selected plan</span></div><p>Precharting workflow · not an NCCN algorithm</p></div><div id="pdfViewer" hidden><div class="canvas-wrap"><canvas id="pdfCanvas" aria-label="Actual page from the selected guideline PDF"></canvas></div><div class="pdf-controls"><button id="prevPage" aria-label="Previous PDF page" title="Previous page">←</button><label>Page<input id="pageNumber" type="number" value="1" min="1"></label><span id="pageCount"></span><button id="nextPage" aria-label="Next PDF page" title="Next page">→</button><button id="zoomOut" aria-label="Zoom out" title="Zoom out">−</button><button id="zoomIn" aria-label="Zoom in" title="Zoom in">+</button><a id="pdfFallback" class="pdf-open-icon" target="_blank" rel="noopener" aria-label="Open PDF in a separate tab" title="Open PDF in a separate tab" hidden>↗</a></div></div><p id="pdfStatus" class="small" role="status"></p>
 <div class="citation" hidden><label>Guideline version<input id="version"></label><label>Page / algorithm reference<input id="page"></label></div></div></section>
 <section class="builder panel"><div class="panel-heading"><div><p class="eyebrow">02 / PRECHART</p><h2>A&amp;P</h2></div></div><div class="builder-body ap-workspace">
-<label class="ap-template-control">A&amp;P template<select id="apTemplate"><option value="consult">New consultation</option><option value="treatment">Treatment</option><option value="surveillance">Surveillance</option></select></label>
-<p class="small">The selected visit type opens its matching template. Choose another template here when needed, then edit before copying.</p>
+<div class="reference-tabs ap-template-tabs" role="tablist" aria-label="A&amp;P template"><button type="button" class="tab active" data-ap-template="consult" role="tab" aria-selected="true">New Consult</button><button type="button" class="tab" data-ap-template="treatment" role="tab" aria-selected="false">Active Treatment</button><button type="button" class="tab" data-ap-template="surveillance" role="tab" aria-selected="false">Surveillance</button></div><select id="apTemplate" hidden><option value="consult">New consultation</option><option value="treatment">Treatment</option><option value="surveillance">Surveillance</option></select>
 <textarea id="note" class="note ap-note" rows="24" aria-label="Editable assessment and plan" spellcheck="true"></textarea><div class="copyrow"><span id="status" role="status" aria-live="polite">Review before pasting into the chart.</span><button id="copy" class="primary">Copy A&amp;P</button></div>
 <div hidden><p id="visitHint"></p><button id="starter"></button><button id="regenerate"></button><input id="histology"><input id="stage"><textarea id="history"></textarea><textarea id="findings"></textarea><textarea id="markers"></textarea><textarea id="plan"></textarea><textarea id="followup"></textarea></div>
 </div></section></div><footer>Personal drafting workspace · No patient database, tracking, or external AI calls. Use de-identified context. <a href="https://www.nccn.org/guidelines/category_1" target="_blank" rel="noopener noreferrer">NCCN guideline directory ↗</a></footer>
@@ -122,6 +123,11 @@ const guidelineIndex = {
       [34, "OV-A · Principles of imaging"],
       [43, "OV-C · Pathology / molecular analysis"],
       [47, "OV-D · Systemic therapy"],
+      [51, "Primary Systemic Therapy 1/3"],
+      [52, "Primary Systemic Therapy 2/3"],
+      [53, "Primary Systemic Therapy 3/3"],
+      [54, "Recurrence Therapies 1/2"],
+      [55, "Recurrence Therapies 2/2"],
       [67, "OV-F · WHO histologic classification"]
       ,[69, "ST-1 · FIGO ovarian staging (1 of 3)"]
       ,[70, "ST-2 · FIGO ovarian staging (2 of 3)"]
@@ -346,7 +352,7 @@ const guidelineIndex = {
 const referenceSections = {
   ovarian: {
     staging: [69, 70, 71, 7, 34, 9, 10, 43, 67],
-    treatment: [8, 11, 12, 13, 14, 47]
+    treatment: [8, 11, 12, 13, 14, 51, 52, 53, 54, 55]
   },
   uterine: {
     staging: [68, 69, 70, 71, 10, 11, 12, 13, 30],
@@ -514,6 +520,9 @@ async function openDocument(url,initialPage=1){
 }
 function value(id, fallback){return $(id).value.trim() || '['+fallback+']';}
 function selectedApTemplate(){return $('apTemplate').value||$('visit').value;}
+function updateApTemplateTabs(){
+ document.querySelectorAll('[data-ap-template]').forEach(button=>{const active=button.dataset.apTemplate===selectedApTemplate();button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active));});
+}
 function buildApTemplate(){
  const key=$('disease').value,d=diseases[key],template=selectedApTemplate();
  if(template==='surveillance'){
@@ -529,11 +538,13 @@ function render(){
  $('visitHint').textContent=v.hint+' '+d.focus;
  if(manuallyEdited)return;
  $('note').value=buildApTemplate();
+ updateApTemplateTabs();
  $('status').textContent='Review before pasting into the chart.';
 }
 fields.forEach(id=>$(id).addEventListener('input',render));
 $('visit').addEventListener('change',()=>{$('apTemplate').value=$('visit').value;manuallyEdited=false;render();});
 $('apTemplate').addEventListener('change',()=>{manuallyEdited=false;render();});
+document.querySelectorAll('[data-ap-template]').forEach(button=>button.addEventListener('click',()=>{$('apTemplate').value=button.dataset.apTemplate;manuallyEdited=false;render();}));
 let previousDisease=$('disease').value;
 $('disease').addEventListener('change',()=>{
  previousDisease=$('disease').value;fields.forEach(id=>$(id).value='');$('cervicalStage').value='';activeTreatmentCategory='primary';manuallyEdited=false;showDocument();render();
@@ -545,7 +556,7 @@ function showDocument(){
  const disease=$('disease').value,entry=library.get(disease);
  configureStageOptions(disease);
  const selectedPaths=disease==='cervical'&&referenceMode==='treatment'?cervicalTreatmentPaths[$('cervicalStage').value]:null;
- const categoryPages={cervical:{adjuvant:17,surveillance:21,recurrence:22,systemic:57},vaginal:{adjuvant:9,surveillance:10,recurrence:11,systemic:23},ovarian:{adjuvant:9,surveillance:12,recurrence:13,systemic:47},uterine:{adjuvant:14,surveillance:20,recurrence:21,systemic:38},vulvar:{adjuvant:8,surveillance:13,recurrence:14,systemic:32}};
+ const categoryPages={cervical:{adjuvant:17,surveillance:21,recurrence:22,systemic:57},vaginal:{adjuvant:9,surveillance:10,recurrence:11,systemic:23},ovarian:{adjuvant:9,surveillance:12,recurrence:13,systemic:51},uterine:{adjuvant:14,surveillance:20,recurrence:21,systemic:38},vulvar:{adjuvant:8,surveillance:13,recurrence:14,systemic:32}};
  const categoryPage=categoryPages[disease]?.[activeTreatmentCategory];
  const vaginalPrimaryPage=$('cervicalStage').value==='ivb'?12:8;
  const stagingPage={cervical:63,vaginal:28,ovarian:69,uterine:68,vulvar:47}[disease]||1;
@@ -648,7 +659,7 @@ function treatmentPageSets(disease){
  const sets={
   cervical:{primary:[11,13,15,16,18,23],adjuvant:[17,56],surveillance:[21],recurrence:[22],systemic:[57]},
   vaginal:{primary:[8,12],adjuvant:[9],surveillance:[10],recurrence:[11],systemic:[23]},
-  ovarian:{primary:[7,8],adjuvant:[9,10,11],surveillance:[12],recurrence:[13,14],systemic:[47]},
+  ovarian:{primary:[7,8],adjuvant:[9,10,11],surveillance:[12],recurrence:[13,14],systemic:[51,52,53,54,55]},
   uterine:{primary:[11,12,13,19,22,23,24,25,45],adjuvant:[14],surveillance:[20],recurrence:[21],systemic:[38]},
   vulvar:{primary:[7,10,12],adjuvant:[8,9,11],surveillance:[13],recurrence:[14,15],systemic:[32]}
  };
@@ -669,7 +680,10 @@ function configureTreatmentShortcut(disease){
  const meta=guidelineIndex[disease],select=$('shortcut');
  select.replaceChildren();
  const prompt=document.createElement('option');prompt.value='';prompt.textContent=activeTreatmentCategory==='adjuvant'?'Choose surgical or adjuvant page':'Choose a treatment page';select.append(prompt);
- pages.forEach(page=>{const match=meta.pages.find(item=>item[0]===page);if(!match)return;const option=document.createElement('option');option.value=page;option.textContent=match[1]+' · PDF p. '+page;select.append(option);});
+ const grouped=disease==='ovarian'&&activeTreatmentCategory==='systemic';
+ const groups=grouped?{primary:Object.assign(document.createElement('optgroup'),{label:'Primary Systemic Therapy'}),recurrence:Object.assign(document.createElement('optgroup'),{label:'Recurrence Therapies'})}:null;
+ pages.forEach(page=>{const match=meta.pages.find(item=>item[0]===page);if(!match)return;const option=document.createElement('option');option.value=page;option.textContent=match[1]+' · PDF p. '+page;if(grouped)(page<=53?groups.primary:groups.recurrence).append(option);else select.append(option);});
+ if(grouped)select.append(groups.primary,groups.recurrence);
  select.disabled=false;
  if(pages.includes(currentPage))select.value=String(currentPage);
  $('shortcutControl').querySelector('span').textContent='Pages';
@@ -724,6 +738,7 @@ $('removePdf').addEventListener('click',async()=>{
  $('version').value='';$('page').value='';showDocument();render();
 });
 const surveillanceStarters={
+ ovarian:'- Reviewed signs/symptoms of recurrence and return precautions\n- Pelvic exam today *** / not clinically indicated today\n- CA-125 collected today, results pending; last CA-125 of *** on ***\n- No routine imaging indicated at this time; imaging only as clinically indicated based on symptoms, exam findings, tumor marker trends\n- Per NCCN guidelines, continue surveillance with visits every 2–4 months for the first 2 years, every 3–6 months for years 3–5, then annually after year 5\n- Return to clinic in *** months for surveillance visit',
  uterine:'Endometrial carcinoma surveillance draft — confirm histology and applicability; not a uterine sarcoma template.\nPlan physical examination including pelvic examination every 3–6 months for the first 2–3 years, every 6–12 months through year 5, then annually. Select the next interval based on the treatment timeline and clinical context.\nConsider CA-125 monitoring when initially elevated or with serous histology. Obtain imaging for symptoms or examination findings concerning for recurrence. Assess late treatment effects and survivorship needs.\n[Document current symptoms, examination after the visit, and any indicated evaluation.]',
  cervical:'Cervical cancer surveillance draft — confirm applicability and prior treatment.\nPlan interval history and physical examination every 3–6 months for the first 2 years, every 6–12 months during years 3–5, then annually according to recurrence risk.\nSelect follow-up imaging using the stage-specific imaging guidance (CERV-B). Obtain laboratory assessment when indicated by concerning symptoms or findings. Consider annual cervical/vaginal cytology only when indicated to screen for lower genital tract neoplasia; it has limited value for recurrence detection and is not recommended after radiation unless another indication exists. Assess late treatment effects and survivorship needs.\n[Document symptoms, examination after the visit, and any evaluation for suspected recurrence.]',
  vaginal:'Vaginal cancer surveillance draft — confirm applicability and prior treatment.\nPlan interval history and physical examination every 3–6 months for the first 2 years, every 6–12 months during years 3–5, then annually according to recurrence risk.\nReview post-treatment response imaging at 3–4 months after treatment completion. Further imaging and laboratory assessment should be guided by concerning symptoms or examination findings. Consider cervical/vaginal cytology when indicated for lower genital tract neoplasia, recognizing limited recurrence-detection value and reduced accuracy after pelvic radiation. Assess late treatment effects and survivorship needs.\n[Document symptoms, examination after the visit, and any evaluation for suspected recurrence.]'
