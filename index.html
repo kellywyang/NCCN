@@ -562,7 +562,7 @@ function showDocument(){
  const vaginalPrimaryPage=$('cervicalStage').value==='ivb'?12:8;
  const stagingPage={cervical:63,vaginal:28,ovarian:69,uterine:68,vulvar:47}[disease]||1;
  const primaryPage={ovarian:7,uterine:11,vulvar:7}[disease]||1;
- const defaultPage=disease==='cervical'?(referenceMode==='staging'?63:(categoryPage||selectedPaths?.[0]?.page||1)):disease==='vaginal'?(referenceMode==='staging'?28:(categoryPage||vaginalPrimaryPage)):(referenceMode==='staging'?stagingPage:(categoryPage||primaryPage));
+ const defaultPage=disease==='cervical'?(referenceMode==='staging'?63:(categoryPage||selectedPaths?.[0]?.page||11)):disease==='vaginal'?(referenceMode==='staging'?28:(categoryPage||vaginalPrimaryPage)):(referenceMode==='staging'?stagingPage:(categoryPage||primaryPage));
  $('cervicalStageControl').hidden=!['cervical','vaginal'].includes(disease);
  pdfURL=entry?.url||null; pdfDisease=entry?$('disease').value:null;
  $('pdfViewer').hidden=!entry;$('pdfEmpty').hidden=!!entry;$('removePdf').hidden=true;$('pdfFallback').hidden=!entry;
@@ -718,6 +718,8 @@ $('cervicalStage').addEventListener('change',()=>{
  setReferenceMode('treatment',{scroll:true});render();
 });
 function setReferenceMode(mode,{openFirst=false,scroll=false}={}){
+ const enteringTreatment=referenceMode==='staging'&&mode==='treatment';
+ if(enteringTreatment)activeTreatmentCategory='primary';
  referenceMode=mode;
  const staging=mode==='staging';
  $('stagingTab').classList.toggle('active',staging);$('stagingTab').setAttribute('aria-selected',String(staging));
@@ -739,7 +741,7 @@ $('removePdf').addEventListener('click',async()=>{
 });
 const surveillanceStarters={
  ovarian:'- Reviewed signs/symptoms of recurrence and return precautions\n- Pelvic exam today *** / not clinically indicated today\n- CA-125 collected today, results pending; last CA-125 of *** on ***\n- No routine imaging indicated at this time; imaging only as clinically indicated based on symptoms, exam findings, tumor marker trends\n- Per NCCN guidelines, continue surveillance with visits every 2–4 months for the first 2 years, every 3–6 months for years 3–5, then annually after year 5\n- Return to clinic in *** months for surveillance visit',
- uterine:'Endometrial carcinoma surveillance draft — confirm histology and applicability; not a uterine sarcoma template.\nPlan physical examination including pelvic examination every 3–6 months for the first 2–3 years, every 6–12 months through year 5, then annually. Select the next interval based on the treatment timeline and clinical context.\nConsider CA-125 monitoring when initially elevated or with serous histology. Obtain imaging for symptoms or examination findings concerning for recurrence. Assess late treatment effects and survivorship needs.\n[Document current symptoms, examination after the visit, and any indicated evaluation.]',
+ uterine:'- Reviewed signs/symptoms of recurrence and return precautions\n- Abdominal & pelvic exam today *** / not clinically indicated today\n- (If initially elevated or serous) CA-125 collected today, results pending; last CA-125 of *** on ***\n- No routine imaging indicated at this time; imaging only as clinically indicated based on symptoms, exam findings, tumor marker trends\n- Per NCCN guidelines, continue surveillance with visits every 3-6 months for the first 2-3 years, every 6–12 months up to year 5, then annually after\n- Return to clinic in *** months for surveillance visit',
  cervical:'Cervical cancer surveillance draft — confirm applicability and prior treatment.\nPlan interval history and physical examination every 3–6 months for the first 2 years, every 6–12 months during years 3–5, then annually according to recurrence risk.\nSelect follow-up imaging using the stage-specific imaging guidance (CERV-B). Obtain laboratory assessment when indicated by concerning symptoms or findings. Consider annual cervical/vaginal cytology only when indicated to screen for lower genital tract neoplasia; it has limited value for recurrence detection and is not recommended after radiation unless another indication exists. Assess late treatment effects and survivorship needs.\n[Document symptoms, examination after the visit, and any evaluation for suspected recurrence.]',
  vaginal:'Vaginal cancer surveillance draft — confirm applicability and prior treatment.\nPlan interval history and physical examination every 3–6 months for the first 2 years, every 6–12 months during years 3–5, then annually according to recurrence risk.\nReview post-treatment response imaging at 3–4 months after treatment completion. Further imaging and laboratory assessment should be guided by concerning symptoms or examination findings. Consider cervical/vaginal cytology when indicated for lower genital tract neoplasia, recognizing limited recurrence-detection value and reduced accuracy after pelvic radiation. Assess late treatment effects and survivorship needs.\n[Document symptoms, examination after the visit, and any evaluation for suspected recurrence.]'
 };
