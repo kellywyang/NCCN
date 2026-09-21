@@ -121,6 +121,7 @@ const guidelineIndex = {
       [43, "OV-C · Pathology / molecular analysis"],
       [47, "OV-D · Systemic therapy"],
       [67, "OV-F · WHO histologic classification"]
+      ,[69, "ST-1 · FIGO ovarian, fallopian tube, and primary peritoneal staging"]
     ]
   },
   "vaginal": {
@@ -164,6 +165,26 @@ const guidelineIndex = {
         28,
         "ST-1 · FIGO vaginal cancer staging"
       ]
+    ]
+  },
+  "vulvar": {
+    "version": "2.2026",
+    "date": "2026-01-06",
+    "sha256": "89bb01842604915e616da91bdd125bd537066ba92b88df05eacf755d56caaab0",
+    "pages": [
+      [6, "VULVA-1 · Workup"],
+      [7, "VULVA-2 · Early-stage primary treatment"],
+      [8, "VULVA-3 · Adjuvant therapy - primary tumor risk factors"],
+      [9, "VULVA-4 · Adjuvant therapy - nodal evaluation"],
+      [10, "VULVA-5 · Locally advanced primary treatment"],
+      [11, "VULVA-6 · Response evaluation and additional treatment"],
+      [12, "VULVA-7 · Metastatic disease primary treatment"],
+      [13, "VULVA-8 · Surveillance"],
+      [14, "VULVA-9 · Locoregional recurrence"],
+      [15, "VULVA-10 · Distant recurrence"],
+      [20, "VULVA-B · Principles of imaging"],
+      [32, "VULVA-E · Systemic therapy"],
+      [47, "ST-1 · FIGO vulvar cancer staging (2021)"]
     ]
   },
   "cervical": {
@@ -297,6 +318,10 @@ const guidelineIndex = {
       [
         45,
         "UTSARC-1 \u00b7 Sarcoma pathway"
+      ],
+      [
+        68,
+        "ST-1 · FIGO endometrial cancer staging"
       ]
     ]
   }
@@ -304,11 +329,11 @@ const guidelineIndex = {
 
 const referenceSections = {
   ovarian: {
-    staging: [7, 9, 10, 34, 43, 67],
+    staging: [69, 7, 34, 9, 10, 43, 67],
     treatment: [8, 11, 12, 13, 14, 47]
   },
   uterine: {
-    staging: [10, 11, 12, 13, 30],
+    staging: [68, 10, 11, 12, 13, 30],
     treatment: [14, 19, 20, 21, 22, 23, 24, 25, 38, 45]
   },
   cervical: {
@@ -318,6 +343,10 @@ const referenceSections = {
   vaginal: {
     staging: [28, 7, 15],
     treatment: [8, 9, 10, 11, 12, 23]
+  },
+  vulvar: {
+    staging: [47, 6, 20],
+    treatment: [7, 8, 9, 10, 11, 12, 13, 14, 15, 32]
   }
 };
 
@@ -413,7 +442,13 @@ async function restoreGuidelines(){
    request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);
   });
   db.close();
-  saved.forEach(entry=>library.set(entry.key,{url:URL.createObjectURL(entry.blob),name:entry.name,verified:entry.verified}));
+  for(const entry of saved){
+   let verified=entry.verified;
+   if(!verified&&guidelineIndex[entry.key]){
+    try{const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await entry.blob.arrayBuffer()))).map(b=>b.toString(16).padStart(2,'0')).join('');verified=hash===guidelineIndex[entry.key].sha256;}catch(e){}
+   }
+   library.set(entry.key,{url:URL.createObjectURL(entry.blob),name:entry.name,verified});
+  }
   showDocument();render();
  }catch(e){
   $('libraryStatus').textContent='Saved guideline storage is unavailable in this browser. You can still choose PDFs for this session.';
@@ -479,10 +514,12 @@ function showDocument(){
  const disease=$('disease').value,entry=library.get(disease);
  configureStageOptions(disease);
  const selectedPaths=disease==='cervical'&&referenceMode==='treatment'?cervicalTreatmentPaths[$('cervicalStage').value]:null;
- const categoryPages={cervical:{adjuvant:17,surveillance:21,recurrence:22,systemic:57},vaginal:{adjuvant:9,surveillance:10,recurrence:11,systemic:23}};
+ const categoryPages={cervical:{adjuvant:17,surveillance:21,recurrence:22,systemic:57},vaginal:{adjuvant:9,surveillance:10,recurrence:11,systemic:23},ovarian:{adjuvant:9,surveillance:12,recurrence:13,systemic:47},uterine:{adjuvant:14,surveillance:20,recurrence:21,systemic:38},vulvar:{adjuvant:8,surveillance:13,recurrence:14,systemic:32}};
  const categoryPage=categoryPages[disease]?.[activeTreatmentCategory];
  const vaginalPrimaryPage=$('cervicalStage').value==='ivb'?12:8;
- const defaultPage=disease==='cervical'?(referenceMode==='staging'?63:(categoryPage||selectedPaths?.[0]?.page||1)):disease==='vaginal'?(referenceMode==='staging'?28:(categoryPage||vaginalPrimaryPage)):1;
+ const stagingPage={cervical:63,vaginal:28,ovarian:69,uterine:68,vulvar:47}[disease]||1;
+ const primaryPage={ovarian:7,uterine:11,vulvar:7}[disease]||1;
+ const defaultPage=disease==='cervical'?(referenceMode==='staging'?63:(categoryPage||selectedPaths?.[0]?.page||1)):disease==='vaginal'?(referenceMode==='staging'?28:(categoryPage||vaginalPrimaryPage)):(referenceMode==='staging'?stagingPage:(categoryPage||primaryPage));
  $('cervicalStageControl').hidden=!['cervical','vaginal'].includes(disease);
  pdfURL=entry?.url||null; pdfDisease=entry?$('disease').value:null;
  $('pdfViewer').hidden=!entry;$('pdfEmpty').hidden=!!entry;$('removePdf').hidden=true;$('pdfFallback').hidden=!entry;
@@ -555,7 +592,7 @@ function setGuidelinePage(page){
 $('shortcut').addEventListener('change',()=>{if($('shortcut').value)setGuidelinePage(Number($('shortcut').value));});
 function renderStagingQuickChoices(){
  const box=$('stagingQuickChoices'),disease=$('disease').value;
- const pages={cervical:[[63,'FIGO Staging'],[10,'Workup Overview'],[34,'Imaging Principles']],vaginal:[[28,'FIGO Staging'],[7,'Workup Overview'],[15,'Imaging Principles']]}[disease];
+ const pages={cervical:[[63,'FIGO Staging'],[10,'Workup Overview'],[34,'Imaging Principles']],vaginal:[[28,'FIGO Staging'],[7,'Workup Overview'],[15,'Imaging Principles']],ovarian:[[69,'FIGO Staging'],[7,'Workup Overview'],[34,'Imaging Principles']],uterine:[[68,'FIGO Staging'],[10,'Workup Overview'],[30,'Imaging Principles']],vulvar:[[47,'FIGO Staging'],[6,'Workup Overview'],[20,'Imaging Principles']]}[disease];
  const visible=!!pages&&referenceMode==='staging'&&!!library.get(disease)?.verified;
  box.hidden=!visible;box.replaceChildren();
  if(!visible)return;
@@ -564,16 +601,23 @@ function renderStagingQuickChoices(){
  });
 }
 function treatmentPageSets(disease){
- return disease==='cervical'?{primary:[11,13,15,16,18,23],adjuvant:[17,56],surveillance:[21],recurrence:[22],systemic:[57]}:{primary:[8,12],adjuvant:[9],surveillance:[10],recurrence:[11],systemic:[23]};
+ const sets={
+  cervical:{primary:[11,13,15,16,18,23],adjuvant:[17,56],surveillance:[21],recurrence:[22],systemic:[57]},
+  vaginal:{primary:[8,12],adjuvant:[9],surveillance:[10],recurrence:[11],systemic:[23]},
+  ovarian:{primary:[7,8],adjuvant:[9,10,11],surveillance:[12],recurrence:[13,14],systemic:[47]},
+  uterine:{primary:[11,12,13,19,22,23,24,25,45],adjuvant:[14],surveillance:[20],recurrence:[21],systemic:[38]},
+  vulvar:{primary:[7,10,12],adjuvant:[8,9,11],surveillance:[13],recurrence:[14,15],systemic:[32]}
+ };
+ return sets[disease]||sets.cervical;
 }
 function renderTreatmentCategoryChoices(){
  const box=$('treatmentCategoryChoices'),disease=$('disease').value;
- const supported=['cervical','vaginal'].includes(disease),verified=!!library.get(disease)?.verified;
+ const supported=['cervical','vaginal','ovarian','uterine','vulvar'].includes(disease),verified=!!library.get(disease)?.verified;
  const visible=supported&&referenceMode==='treatment'&&verified;
  box.hidden=!visible;$('shortcutControl').hidden=supported&&referenceMode==='staging'&&verified;box.replaceChildren();
  if(!visible)return;
  const categories=[['primary','Primary Treatment'],['adjuvant','Surgical Findings & Adjuvant Treatment'],['surveillance','Surveillance'],['recurrence','Regional Recurrence'],['systemic','Systemic Therapy']];
- categories.forEach(([key,label])=>{const button=document.createElement('button');button.type='button';button.textContent=label;button.classList.toggle('active',activeTreatmentCategory===key);button.addEventListener('click',()=>{activeTreatmentCategory=key;const pages=treatmentPageSets(disease)[key];let page=pages[0];if(key==='primary'){if(disease==='cervical')page=cervicalTreatmentPaths[$('cervicalStage').value]?.[0]?.page||pages[0];else page=$('cervicalStage').value==='ivb'?12:8;}setGuidelinePage(page);});box.append(button);});
+ categories.forEach(([key,label])=>{const button=document.createElement('button');button.type='button';button.textContent=label;button.classList.toggle('active',activeTreatmentCategory===key);button.addEventListener('click',()=>{activeTreatmentCategory=key;const pages=treatmentPageSets(disease)[key];let page=pages[0];if(key==='primary'){if(disease==='cervical')page=cervicalTreatmentPaths[$('cervicalStage').value]?.[0]?.page||pages[0];else if(disease==='vaginal')page=$('cervicalStage').value==='ivb'?12:8;}setGuidelinePage(page);});box.append(button);});
  configureTreatmentShortcut(disease);
 }
 function configureTreatmentShortcut(disease){
